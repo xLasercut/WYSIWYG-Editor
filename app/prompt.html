@@ -10,11 +10,13 @@
     </head>
     <body>
         <div id="promptApp" class="appContainer">
+            <div class="headerBar"></div>
             <div class="inputContainer">
-                <div class="inputs"><label>URL </label><input v-model="url"></input></div>
+                <div v-show="showTextBox.indexOf(tag) == -1" class="inputs"><label>URL </label><input v-model="url" placeholder="https://"></input></div>
                 <div v-show="showSizeControl.indexOf(tag) > -1" class="inputs"><label>Height </label><input type="number" v-model="height"></input></div>
                 <div v-show="showSizeControl.indexOf(tag) > -1" class="inputs"><label>Width </label><input type="number" v-model="width"></input></div>
                 <div v-show="showTextInput.indexOf(tag) > -1" class="inputs"><label>Text </label><input v-model="text"></input></div>
+                <div v-show="showTextBox.indexOf(tag) > -1" class="inputs"><textarea ref="ta" placeholder="Insert HTML"></textarea></div>
             </div>
             <div class="buttonsContainer">
                 <button class="btn btnCancel" v-on:click="cancelOption()">Cancel</button>

@@ -1,8 +1,15 @@
+.headerBar {
+    width: 100%;
+    height: 20px;
+    background: var(--main-blue);
+    float: left;
+}
+
 .inputContainer {
-    width: calc(100% - 20px);
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 100%;
+    height: calc(100% - 70px);
+    padding-top: 10px;
+    padding-bottom: 5px;
     float: left;
 }
 
@@ -10,17 +17,13 @@
     width: 100%;
     height: 35px;
     background: var(--main-blue);
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    float: left;
 }
 
 .inputs {
     width: 100%;
     float: left;
     text-align: center;
-    height: 25px;
-    line-height: 25px;
     font-size: 12pt;
     margin-bottom: 5px;
 }
@@ -30,6 +33,7 @@
     width: 25%;
     float: left;
     text-align: right;
+    padding-top: 5px;
     padding-right: 5px;
     font-size: inherit;
 }
@@ -39,4 +43,23 @@
     display: inline-block;
     float: left;
     font-size: inherit;
+    border: 1px solid var(--main-blue);
+    padding: 5px;
+}
+
+.inputs input:focus {
+    outline: 2px solid var(--main-blue);
+}
+
+.inputs textarea {
+    width: calc(100% - 40px);
+    height: 170px;
+    resize: none;
+    outline: none;
+    border: 1px solid var(--main-blue);
+    padding: 5px;
+    font-family: inherit;
+}
+.inputs textarea:focus {
+    outline: 2px solid var(--main-blue);
 }

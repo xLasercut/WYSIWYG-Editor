@@ -23,6 +23,12 @@ module.exports = {
             value: '<i class="fab fa-youtube"></i>',
             option: 'insertYoutube',
             tooltip: 'Insert Youtube Video'
+        },
+        {
+            tag: 'insertHTML',
+            value: '<i class="fas fa-code"></i>',
+            option: 'insertCode',
+            tooltip: 'Insert HTML'
         }
     ]
 }

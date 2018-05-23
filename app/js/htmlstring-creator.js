@@ -41,12 +41,13 @@ function createYoutubeHTML (url, height, width) {
 }
 
 class HTMLStringCreator {
-    constructor (tag, url, height, width, text) {
+    constructor (tag, url, height, width, text, textarea) {
         this.tag = tag
         this.url = url
         this.height = height
         this.width = width
         this.text = text
+        this.textarea = textarea
     }
 
     getHTMLString () {
@@ -58,6 +59,9 @@ class HTMLStringCreator {
         }
         else if (this.tag == 'insertYoutube') {
             return createYoutubeHTML(this.url, this.height, this.width)
+        }
+        else if (this.tag == 'insertCode') {
+            return this.textarea
         }
     }
 }

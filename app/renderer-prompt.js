@@ -13,7 +13,8 @@ var promptApp = new Vue({
     data: {
         showSizeControl: ['insertImage', 'insertYoutube'],
         showTextInput: ['insertLink'],
-        url: "https://",
+        showTextBox: ['insertCode'],
+        url: "",
         height: null,
         width: null,
         text: "",
@@ -21,10 +22,8 @@ var promptApp = new Vue({
     },
     methods: {
         confirmOption: function () {
-            if (this.url != 'https://') {
-                var htmlStringCreator = new HTMLStringCreator(this.tag, this.url, this.height, this.width, this.text)
-                editorWindow.webContents.send("editorOptions", htmlStringCreator.getHTMLString())
-            }
+            var htmlStringCreator = new HTMLStringCreator(this.tag, this.url, this.height, this.width, this.text, this.$refs.ta.value)
+            editorWindow.webContents.send("editorOptions", htmlStringCreator.getHTMLString())
             currentWindow.close()
         },
         cancelOption: function () {

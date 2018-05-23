@@ -12,11 +12,17 @@
     --main-green-dark: #357a4c;
 }
 
+@font-face {
+    font-family: "roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
+    font-family: "roboto";
 }
 
 .appContainer {

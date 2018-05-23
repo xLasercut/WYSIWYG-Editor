@@ -24,7 +24,7 @@ var promptUrl = url.format({
 })
 
 var promptWindowOptions = {
-    height: 150,
+    height: 250,
     width: 400,
     useContentSize: true,
     resizable: false,
@@ -41,6 +41,7 @@ var settingsUrl = url.format({
 var settingsWindowOptions = {
     height: 150,
     width: 400,
+    useContentSize: true,
     resizable: false,
     parent: currentWindow,
     show: false
