@@ -1,0 +1,14 @@
+{
+  "name": "wysiwyg-editor",
+  "version": "1.0.0",
+  "description": "a WYSIWYG html page editor",
+  "main": "boot.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "xLasercut",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^2.0.1"
+  }
+}

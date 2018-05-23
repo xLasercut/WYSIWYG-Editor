@@ -1,0 +1,42 @@
+.inputContainer {
+    width: calc(100% - 20px);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+}
+
+.buttonsContainer {
+    width: 100%;
+    height: 35px;
+    background: var(--main-blue);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.inputs {
+    width: 100%;
+    float: left;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12pt;
+    margin-bottom: 5px;
+}
+
+.inputs label {
+    display: inline-block;
+    width: 25%;
+    float: left;
+    text-align: right;
+    padding-right: 5px;
+    font-size: inherit;
+}
+
+.inputs input {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    font-size: inherit;
+}

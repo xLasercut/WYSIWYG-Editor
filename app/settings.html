@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Settings</title>
+        <link rel="stylesheet" href="./css/main.css" type="text/css">
+        <link rel="stylesheet" href="./css/button.css" type="text/css">
+        <link rel="stylesheet" href="./css/prompt.css" type="text/css">
+        <script src="./js/vue.js"></script>
+    </head>
+    <body>
+        <div id="settingsApp" class="appContainer">
+            <div class="inputContainer">
+                <div class="inputs"><label>API Key </label><input v-model="apiKey"></input></div>
+            </div>
+            <div class="buttonsContainer">
+                <button class="btn btnCancel" v-on:click="cancelOption()">Cancel</button>
+                <button class="btn btnConfirm" v-on:click="confirmOption()">Confirm</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        require('./renderer-settings.js')
+    </script>
+</html>

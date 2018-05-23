@@ -1,0 +1,31 @@
+:root {
+    --main-blue: #5683c4;
+    --main-blue-light: #9ab5dc;
+    --main-blue-lighter: #c2d3ea;
+    --main-blue-dark: #37609d;
+    --main-blue-darker: #244069;
+    --main-red: #d76463;
+    --main-red-light: #e18b8a;
+    --main-red-dark: #bb3130;
+    --main-green: #46a365;
+    --main-green-light: #6ec189;
+    --main-green-dark: #357a4c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.appContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.btnGroup {
+    float: left;
+    margin-right: 5px;
+    height: 100%;
+}
