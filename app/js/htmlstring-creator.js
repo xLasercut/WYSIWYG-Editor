@@ -40,10 +40,18 @@ function createYoutubeHTML (url, height, width) {
     return htmlString
 }
 
+function sanitizeUrl (url) {
+    if (url.indexOf("https://") == -1 || url.indexOf("http://") != -1) {
+        return `https://${url}`
+    }
+
+    return url
+}
+
 class HTMLStringCreator {
     constructor (tag, url, height, width, text, textarea) {
         this.tag = tag
-        this.url = url
+        this.url = sanitizeUrl(url)
         this.height = height
         this.width = width
         this.text = text

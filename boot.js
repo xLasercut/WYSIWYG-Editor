@@ -9,7 +9,7 @@ fileManager.ensureFile(JSON.stringify({}))
 
 let mainWindow
 
-global.debug = false
+global.debug = true
 
 const debug = global.debug
 

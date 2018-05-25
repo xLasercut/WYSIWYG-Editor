@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Options</title>
+        <link rel="stylesheet" href="./css/main.css" type="text/css">
+        <link rel="stylesheet" href="./css/button.css" type="text/css">
+        <link rel="stylesheet" href="./css/upload.css" type="text/css">
+        <script src="./js/vue.js"></script>
+        <script src="./js/fontawesome-all.js"></script>
+    </head>
+    <body>
+        <div id="uploadApp" class="appContainer">
+            <div class="fileTreeContainer">
+                <div v-for="item in fileTreeData" v-if="selectionData[item.parent]" class="fileContainer">
+                    <input :type="item.inputType" :id="item.path" :value="item.value" v-model="selectionData[item.model]"></input>
+                    <label :for="item.path" v-html="item.name"></label>
+                </div>
+            </div>
+            <div v-html="pageToUpload" class="currentPageContainer"></div>
+            <div class="infoContainer">
+                <div class="inputsContainer">
+                    <div class="inputs">
+                        <input v-model="selectionData['selectedFile']"></input>
+                    </div>
+                    <div class="inputs">
+                        <button class="btn" v-on:click="fileSelect()"><i class="far fa-file"></i> {{ this.localFilePath || "Select File" }}</button>
+                    </div>
+                </div>
+                <div class="buttonContainer">
+                    <button class="btn btnCancel" v-on:click="closeWindow()">cancel</button>
+                    <button class="btn btnConfirm" v-on:click="uploadFile()">upload</button>
+                    <button class="btn btnConfirm" v-on:click="reloadFileTree()">reload</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        require('./renderer-upload.js')
+    </script>
+</html>

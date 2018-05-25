@@ -6,6 +6,7 @@ const path = require('path')
 
 const FileManager = require('./js/file-manager.js')
 const editBtns = require('./js/edit-btns.js')
+const windows = require('./js/window-settings')
 
 const specials = [
     "insertHTML"
@@ -16,36 +17,7 @@ const debug = remote.getGlobal("debug")
 let currentWindow = remote.getCurrentWindow()
 let promptWindow
 let settingsWindow
-
-var promptUrl = url.format({
-    pathname: path.join(__dirname, "prompt.html"),
-    protocol: "file:",
-    slashes: true
-})
-
-var promptWindowOptions = {
-    height: 250,
-    width: 400,
-    useContentSize: true,
-    resizable: false,
-    parent: currentWindow,
-    show: false
-}
-
-var settingsUrl = url.format({
-    pathname: path.join(__dirname, "settings.html"),
-    protocol: "file:",
-    slashes: true
-})
-
-var settingsWindowOptions = {
-    height: 150,
-    width: 400,
-    useContentSize: true,
-    resizable: false,
-    parent: currentWindow,
-    show: false
-}
+let uploadWindow
 
 var dialogOptions = {
     filters: [
@@ -53,16 +25,17 @@ var dialogOptions = {
     ]
 }
 
-function createChildWindow (childWindow, windowOptions, url, windowData) {
+function createChildWindow (childWindow, parentWindow, windowOptions, url, windowData) {
+    windowOptions["parent"] = parentWindow
     childWindow = new BrowserWindow(windowOptions)
 
-    childWindow.setMenu(null)
+    //childWindow.setMenu(null)
     childWindow.loadURL(url)
 
     childWindow.once('ready-to-show', function () {
         childWindow.show()
         if (windowData) {
-            childWindow.webContents.send("editorOptions", windowData)
+            childWindow.webContents.send(windowData.name, windowData.data)
         }
     })
 
@@ -84,7 +57,11 @@ const editorApp = new Vue({
     methods: {
         addFormat: function (tag, option) {
             if (specials.indexOf(tag) > -1) {
-                createChildWindow(promptWindow, promptWindowOptions, promptUrl, option)
+                var windowData = {
+                    name: "editorOptions",
+                    data: option
+                }
+                createChildWindow(promptWindow, currentWindow, windows.prompt.options, windows.prompt.url, windowData)
             }
             else {
                 document.execCommand(tag, false, option)
@@ -116,10 +93,14 @@ const editorApp = new Vue({
             console.log(this.$refs.contents.innerHTML)
         },
         openSettings: function () {
-            createChildWindow(settingsWindow, settingsWindowOptions, settingsUrl)
+            createChildWindow(settingsWindow, currentWindow, windows.settings.options, windows.settings.url)
         },
         uploadFile: function () {
-            alert('Coming Soon')
+            var windowData = {
+                name: "pageToUpload",
+                data: this.$refs.contents.innerHTML
+            }
+            createChildWindow(uploadWindow, currentWindow, windows.upload.options, windows.upload.url, windowData)
         }
     }
 })

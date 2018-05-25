@@ -9,6 +9,8 @@
   "author": "xLasercut",
   "license": "MIT",
   "dependencies": {
-    "electron": "^2.0.1"
+    "electron": "^2.0.1",
+    "q": "^1.5.1",
+    "request": "^2.87.0"
   }
 }

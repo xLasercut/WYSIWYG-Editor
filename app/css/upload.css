@@ -1,0 +1,47 @@
+.fileTreeContainer {
+    height: 100%;
+    width: 250px;
+    background: var(--main-blue);
+    color: white;
+    float: left;
+    overflow: auto;
+}
+
+.fileContainer {
+    background: none;
+    white-space: nowrap;
+}
+
+.currentPageContainer {
+    padding: 5px;
+    height: calc(100% - 90px);
+    width: calc(100% - 260px);
+    float: left;
+    overflow-y: auto;
+}
+
+.infoContainer {
+    height: 80px;
+    width: calc(100% - 250px);
+    background: var(--main-blue-dark);
+    float: left;
+}
+
+.buttonContainer {
+    width: 240px;
+    height: 80px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.inputsContainer {
+    text-align: center;
+    width: calc(100% - 240px);
+    height: 100%;
+    float: left;
+}
+.inputs {
+    height: 50%;
+    width: 100%;
+}
