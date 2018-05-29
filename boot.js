@@ -4,12 +4,12 @@ const url = require('url')
 const path = require('path')
 const FileManager = require('./app/js/file-manager.js')
 
-var fileManager = new FileManager('./config.json')
-fileManager.ensureFile(JSON.stringify({}))
+var configFile = new FileManager('./config.json')
+configFile.ensureFile(JSON.stringify({}))
 
 let mainWindow
 
-global.debug = true
+global.debug = false
 
 const debug = global.debug
 

@@ -30,7 +30,6 @@
     line-height: 100%;
 }
 
-
 .btnUpload {
     float: left;
     background: var(--main-blue-darker);
@@ -50,7 +49,6 @@
     padding-top: -5px;
     padding-bottom: 5px;
 }
-
 
 .btnConfirm {
     float: right;
@@ -96,4 +94,24 @@
 
 .btnDropdown {
     height: 35px;
+}
+
+.btnFileSelect {
+    width: 100%;
+    line-height: calc(100% - 5px);
+    border-bottom: 5px solid var(--main-green-light);
+    background: var(--main-blue-darker);
+    color: white;
+    font-size: 12pt;
+    transition: all 0.1s;
+}
+
+.btnFileSelect:hover {
+    background: var(--main-green-light);
+    border-bottom: 5px solid var(--main-green);
+}
+
+.btnFileSelect:active {
+    line-height: 100%;
+    border-bottom: 0px solid var(--main-green);
 }

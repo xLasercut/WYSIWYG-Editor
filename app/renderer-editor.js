@@ -5,8 +5,13 @@ const url = require('url')
 const path = require('path')
 
 const FileManager = require('./js/file-manager.js')
+const DialogManager = require('./js/dialog-manager.js')
+
 const editBtns = require('./js/edit-btns.js')
 const windows = require('./js/window-settings')
+const dialogSettings = require('./js/dialog-settings.js')
+
+var dialogManager = new DialogManager()
 
 const specials = [
     "insertHTML"
@@ -19,17 +24,11 @@ let promptWindow
 let settingsWindow
 let uploadWindow
 
-var dialogOptions = {
-    filters: [
-        { name: "Web Page", extensions: ["html", "htm"] }
-    ]
-}
-
 function createChildWindow (childWindow, parentWindow, windowOptions, url, windowData) {
     windowOptions["parent"] = parentWindow
     childWindow = new BrowserWindow(windowOptions)
 
-    //childWindow.setMenu(null)
+    childWindow.setMenu(null)
     childWindow.loadURL(url)
 
     childWindow.once('ready-to-show', function () {
@@ -72,21 +71,20 @@ const editorApp = new Vue({
             this.currentFilePath = null
         },
         openDocument: function () {
-            var filePath = dialog.showOpenDialog(dialogOptions)
-            if (filePath) {
-                this.currentFilePath = filePath[0]
-                var fileManager = new FileManager(this.currentFilePath)
-                this.$refs.contents.innerHTML = fileManager.readFile()
+            this.currentFilePath = dialogManager.openDialog(dialogSettings.webPage)
+            if (this.currentFilePath) {
+                var htmlDoc = new FileManager(this.currentFilePath)
+                this.$refs.contents.innerHTML = htmlDoc.readFile()
             }
         },
         saveDocument: function () {
             if (!this.currentFilePath) {
-                this.currentFilePath = dialog.showSaveDialog(dialogOptions)
+                this.currentFilePath = dialogManager.saveDialog(dialogSettings.webPage)
             }
 
             if (this.currentFilePath) {
-                var fileManager = new FileManager(this.currentFilePath)
-                fileManager.saveFile(this.$refs.contents.innerHTML)
+                var htmlDoc = new FileManager(this.currentFilePath)
+                htmlDoc.saveFile(this.$refs.contents.innerHTML)
             }
         },
         getText: function () {
@@ -96,11 +94,7 @@ const editorApp = new Vue({
             createChildWindow(settingsWindow, currentWindow, windows.settings.options, windows.settings.url)
         },
         uploadFile: function () {
-            var windowData = {
-                name: "pageToUpload",
-                data: this.$refs.contents.innerHTML
-            }
-            createChildWindow(uploadWindow, currentWindow, windows.upload.options, windows.upload.url, windowData)
+            createChildWindow(uploadWindow, currentWindow, windows.upload.options, windows.upload.url)
         }
     }
 })

@@ -1,28 +1,22 @@
 const remote = require('electron').remote
-const {dialog} = remote
-const ipcRenderer = require('electron').ipcRenderer
 const fs = require('fs')
 
 const FileManager = require('./js/file-manager.js')
 const NeocitiesHelper = require('./js/neocities-helper.js')
 const FiletreeManager = require('./js/filetree-manager.js')
+const NotificationManager = require('./js/notification-manager.js')
+const DialogManager = require('./js/dialog-manager.js')
 
 var fileManager = new FileManager("./config.json")
+var notificationManager = new NotificationManager()
+var dialogManager = new DialogManager()
 
 let currentWindow = remote.getCurrentWindow()
 
-function checkVariables(localFilePath, serverFilePath) {
-    if (!localFilePath) {
-        alert('Please select file to upload')
-        return false
+function checkVariable(variable, type) {
+    if (!variable) {
+        throw type
     }
-
-    if (!serverFilePath) {
-        alert('Please input select a server file to replace or input a new file name')
-        return false
-    }
-
-    return true
 }
 
 var uploadApp = new Vue({
@@ -33,12 +27,13 @@ var uploadApp = new Vue({
         selectionData: {
             root: true
         },
-        localFilePath: ""
+        localFilePath: null
     },
     methods: {
         reloadFileTree: function () {
             var configData = JSON.parse(fileManager.readFile())
-            if (configData["apiKey"]) {
+            try {
+                checkVariable(configData["apiKey"], "apiKey")
                 var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
                 neocitiesHelper.getItem("/api/list")
                 .then((data) => {
@@ -49,45 +44,40 @@ var uploadApp = new Vue({
                     console.log(err)
                 })
             }
-            else {
-                alert("Please set Neocities API key in settings")
+            catch (e) {
+                notificationManager.showNotification(e)
             }
         },
         uploadFile: function () {
-            if (!this.localFilePath) {
-                this.fileSelect()
-            }
-            if (checkVariables(this.localFilePath, this.selectionData["selectedFile"])) {
+            var configData = JSON.parse(fileManager.readFile())
+            try {
+                checkVariable(configData["apiKey"], "apiKey")
+                checkVariable(this.localFilePath, "localFilePath")
+                checkVariable(this.selectionData["selectedFile"], "serverFilePath")
                 var value = fs.createReadStream(this.localFilePath)
                 var formData = {}
                 formData[this.selectionData["selectedFile"]] = value
-                var configData = JSON.parse(fileManager.readFile())
-                if (configData["apiKey"]) {
-                    var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
-                    neocitiesHelper.postItem("/api/upload", formData)
-                    .then ((data) => {
-                        console.log(data)
-                    })
-                    .catch ((err) => {
-                        console.log(err)
-                    })
-                }
-                else {
-                    alert("Please set Neocities API key in settings")
-                }
+                var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
+                neocitiesHelper.postItem("/api/upload", formData)
+                .then ((data) => {
+                    alert(data.message)
+                    this.reloadFileTree()
+                })
+                .catch ((err) => {
+                    console.log(err)
+                })
+            }
+            catch (e) {
+                notificationManager.showNotification(e)
             }
         },
         closeWindow () {
             currentWindow.close()
         },
         fileSelect () {
-            this.localFilePath = dialog.showOpenDialog()[0]
+            this.localFilePath = dialogManager.openDialog()
         }
     }
 })
 
-//uploadApp.reloadFileTree()
-
-ipcRenderer.on("pageToUpload", function(evt, data) {
-    uploadApp.pageToUpload = data
-})
+uploadApp.reloadFileTree()

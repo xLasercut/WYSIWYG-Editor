@@ -55,13 +55,16 @@ class FiletreeManager {
         if (file.path.indexOf("/") == -1) {
             file["parent"] = "root"
             file["name"] = file.path
+            file["spaces"] = ""
         }
         else {
             for (var directory of this.allDirectories) {
                 var fileName = file.path.replace(`${directory}/`, "")
                 if (fileName.indexOf("/") == -1 && fileName != "") {
                     file["parent"] = directory
+                    var levels = directory.split("/").length
                     file["name"] = fileName
+                    file["spaces"] = "&nbsp;&nbsp;&nbsp;".repeat(levels)
                 }
             }
         }

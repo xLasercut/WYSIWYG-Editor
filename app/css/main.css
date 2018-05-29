@@ -13,8 +13,13 @@
 }
 
 @font-face {
-    font-family: "roboto";
+    font-family: Roboto;
     src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: FontAwesome;
+    src: url("../fonts/Font\ Awesome\ 5\ Free-Solid-900.otf")
 }
 
 body {
@@ -22,7 +27,7 @@ body {
     padding: 0;
     height: 100vh;
     width: 100vw;
-    font-family: "roboto";
+    font-family: Roboto;
 }
 
 .appContainer {

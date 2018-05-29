@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Options</title>
+        <title>Upload</title>
         <link rel="stylesheet" href="./css/main.css" type="text/css">
         <link rel="stylesheet" href="./css/button.css" type="text/css">
         <link rel="stylesheet" href="./css/upload.css" type="text/css">
@@ -11,26 +11,27 @@
     </head>
     <body>
         <div id="uploadApp" class="appContainer">
+            <div class="titleContainer">Server Files</div>
             <div class="fileTreeContainer">
                 <div v-for="item in fileTreeData" v-if="selectionData[item.parent]" class="fileContainer">
+                    <span v-html="item.spaces"></span>
                     <input :type="item.inputType" :id="item.path" :value="item.value" v-model="selectionData[item.model]"></input>
                     <label :for="item.path" v-html="item.name"></label>
                 </div>
             </div>
-            <div v-html="pageToUpload" class="currentPageContainer"></div>
             <div class="infoContainer">
                 <div class="inputsContainer">
                     <div class="inputs">
-                        <input v-model="selectionData['selectedFile']"></input>
+                        <i class="fas fa-file"></i> File to Replace: <input class="serverFileSelect" v-model="selectionData['selectedFile']"></input>
                     </div>
                     <div class="inputs">
-                        <button class="btn" v-on:click="fileSelect()"><i class="far fa-file"></i> {{ this.localFilePath || "Select File" }}</button>
+                        <button class="btn btnFileSelect" v-on:click="fileSelect()"><i class="far fa-file"></i> File to Upload:  {{ this.localFilePath || "Select File" }}</button>
                     </div>
                 </div>
                 <div class="buttonContainer">
-                    <button class="btn btnCancel" v-on:click="closeWindow()">cancel</button>
-                    <button class="btn btnConfirm" v-on:click="uploadFile()">upload</button>
-                    <button class="btn btnConfirm" v-on:click="reloadFileTree()">reload</button>
+                    <button class="btn btnCancel" v-on:click="closeWindow()">Cancel</button>
+                    <button class="btn btnConfirm" v-on:click="uploadFile()"><i class="fas fa-upload"></i> Upload</button>
+                    <button class="btn btnConfirm" v-on:click="reloadFileTree()"><i class="fas fa-sync-alt"></i> Reload</button>
                 </div>
             </div>
         </div>
