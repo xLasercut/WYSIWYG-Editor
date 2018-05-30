@@ -28,7 +28,9 @@ function createChildWindow (childWindow, parentWindow, windowOptions, url, windo
     windowOptions["parent"] = parentWindow
     childWindow = new BrowserWindow(windowOptions)
 
-    childWindow.setMenu(null)
+    if (!debug) {
+        childWindow.setMenu(null)
+    }
     childWindow.loadURL(url)
 
     childWindow.once('ready-to-show', function () {

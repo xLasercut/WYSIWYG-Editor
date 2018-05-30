@@ -71,11 +71,25 @@ var uploadApp = new Vue({
                 notificationManager.showNotification(e)
             }
         },
-        closeWindow () {
+        closeWindow: function () {
             currentWindow.close()
         },
-        fileSelect () {
+        fileSelect: function () {
             this.localFilePath = dialogManager.openDialog()
+        },
+        showFile: function (parents) {
+            count = 0
+            for (var parent of parents) {
+                if (this.selectionData[parent]) {
+                    count++
+                }
+            }
+
+            if (count == parents.length) {
+                return true
+            }
+
+            return false
         }
     }
 })

@@ -1,13 +1,62 @@
-function getDirectories (fileData) {
-    var directories = []
-    for (var file of fileData) {
-        if (file.is_directory) {
-            directories.push(file.path)
-        }
+function includes(item, include) {
+    if (item.indexOf(include) != -1) {
+        return true
     }
-    return directories
+    return false
 }
 
+function appendInputType (item) {
+    if (item.is_directory) {
+        item["inputType"] = "checkbox"
+        item["model"] = item.path
+        item["value"] = false
+    }
+    else {
+        item["inputType"] = "radio"
+        item["model"] = "selectedFile"
+        item["value"] = item.path
+    }
+}
+
+function appendParent (item, rootDir, nonRootDir) {
+    for (var dir of rootDir.concat(nonRootDir)) {
+        var fileName = item.path.replace(`${dir.path}/`, "")
+        if (!includes(fileName, "/") && fileName != "") {
+            item["parent"] = dir.path
+            item["allParents"] = dir.allParents.concat([dir.path])
+            item["name"] = fileName
+            var levels = dir.path.split("/").length
+            item["spaces"] = "&nbsp;&nbsp;&nbsp;".repeat(levels)
+            break
+        }
+    }
+}
+
+function sortFileData (fileData, rootDir, rootFile, nonRootDir, nonRootFile) {
+    for (var item of fileData) {
+        appendInputType(item)
+        if (!includes(item.path, "/")) {
+            item["parent"] = "root"
+            item["allParents"] = ["root"]
+            item["name"] = item.path
+            item["spaces"] = ""
+            if (item.is_directory) {
+                rootDir.push(item)
+            }
+            else {
+                rootFile.push(item)
+            }
+        }
+        else {
+            if (item.is_directory) {
+                nonRootDir.push(item)
+            }
+            else {
+                nonRootFile.push(item)
+            }
+        }
+    }
+}
 
 function sortFileTree (nonRootItems, rootItems) {
     var fileTree = rootItems
@@ -43,76 +92,30 @@ function sortFileTree (nonRootItems, rootItems) {
 
 class FiletreeManager {
     constructor (fileData) {
-        this.fileData = fileData
-        this.allDirectories = getDirectories(this.fileData)
-        this.rootFiles = []
-        this.rootDirectories = []
-        this.nonRootFiles = []
-        this.nonRootDirectories = []
-    }
-
-    appendParent (file) {
-        if (file.path.indexOf("/") == -1) {
-            file["parent"] = "root"
-            file["name"] = file.path
-            file["spaces"] = ""
-        }
-        else {
-            for (var directory of this.allDirectories) {
-                var fileName = file.path.replace(`${directory}/`, "")
-                if (fileName.indexOf("/") == -1 && fileName != "") {
-                    file["parent"] = directory
-                    var levels = directory.split("/").length
-                    file["name"] = fileName
-                    file["spaces"] = "&nbsp;&nbsp;&nbsp;".repeat(levels)
-                }
-            }
-        }
-        return file
-    }
-
-    appendInputType (file) {
-        if (file.is_directory) {
-            file["inputType"] = "checkbox"
-            file["model"] = file.path
-            file["value"] = false
-        }
-        else {
-            file["inputType"] = "radio"
-            file["model"] = "selectedFile"
-            file["value"] = file.path
-        }
-        return file
-    }
-
-    separateFiles (file) {
-        if (file.is_directory) {
-            if (file.parent == "root") {
-                this.rootDirectories.push(file)
-            }
-            else {
-                this.nonRootDirectories.push(file)
-            }
-        }
-        else {
-            if (file.parent == "root") {
-                this.rootFiles.push(file)
-            }
-            else {
-                this.nonRootFiles.push(file)
-            }
-        }
+        this.rootFile = []
+        this.rootDir = []
+        this.nonRootFile = []
+        this.nonRootDir = []
+        sortFileData(fileData, this.rootDir, this.rootFile, this.nonRootDir, this.nonRootFile)
     }
 
     createFileTree () {
-        for (var file of this.fileData) {
-            var appendedFile = file
-            appendedFile = this.appendParent(appendedFile)
-            appendedFile = this.appendInputType(appendedFile)
-            this.separateFiles(appendedFile)
+        this.nonRootDir.sort(function (a, b) {
+            return a.path.length > b.path.length
+        })
+        var appended = []
+        for (var dir of this.nonRootDir){
+            appendParent(dir, this.rootDir, this.nonRootDir)
         }
-        var nonRootItems = this.nonRootDirectories.concat(this.nonRootFiles)
-        var rootItems = this.rootDirectories.concat(this.rootFiles)
+        this.nonRootDir.sort(function (a, b) {
+            return a.path > b.path
+        })
+        for (var file of this.nonRootFile) {
+            appendParent(file, this.rootDir, this.nonRootDir)
+        }
+
+        var rootItems = this.rootDir.concat(this.rootFile)
+        var nonRootItems = this.nonRootDir.concat(this.nonRootFile)
 
         return sortFileTree(nonRootItems, rootItems)
     }
