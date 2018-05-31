@@ -93,7 +93,9 @@
 }
 
 .btnDropdown {
-    height: 35px;
+    height: 25px;
+    width: 100%;
+    font-size: 11pt;
 }
 
 .btnFileSelect {

@@ -23,7 +23,7 @@
 
 .dropdown {
     height: 100%;
-    line-height: inherit;
+    line-height: 35px;
     width: 40px;
     color: white;
     float: left;
@@ -43,8 +43,7 @@
 }
 
 .dropdownContent {
-    height: 70px;
-    width: 160px;
+    width: 100px;
     display: none;
     position: absolute;
     float: left;

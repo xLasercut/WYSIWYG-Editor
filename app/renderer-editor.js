@@ -79,8 +79,8 @@ const editorApp = new Vue({
                 this.$refs.contents.innerHTML = htmlDoc.readFile()
             }
         },
-        saveDocument: function () {
-            if (!this.currentFilePath) {
+        saveDocument: function (saveAs) {
+            if (!this.currentFilePath || saveAs) {
                 this.currentFilePath = dialogManager.saveDialog(dialogSettings.webPage)
             }
 

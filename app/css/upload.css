@@ -32,13 +32,13 @@
 
 .infoContainer {
     height: 80px;
-    width: calc(100% - 240px);
+    width: calc(100% - 320px);
     background: var(--main-blue);
     float: left;
 }
 
 .buttonContainer {
-    width: 240px;
+    width: 320px;
     height: 80px;
     position: absolute;
     right: 0;

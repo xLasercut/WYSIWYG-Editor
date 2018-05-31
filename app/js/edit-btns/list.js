@@ -2,7 +2,7 @@ module.exports = {
     btns: [
         {
             tag: 'insertUnorderedList',
-            value: '<i class="fas fa-list-ul"></i>',
+            value: '<i class="fas fa-list"></i>',
             option: null,
             tooltip: 'Bullet List'
         },

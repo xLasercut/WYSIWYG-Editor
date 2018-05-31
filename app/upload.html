@@ -22,14 +22,15 @@
             <div class="infoContainer">
                 <div class="inputsContainer">
                     <div class="inputs">
-                        <i class="fas fa-file"></i> File to Replace: <input class="serverFileSelect" v-model="selectionData['selectedFile']"></input>
+                        <i class="fas fa-file"></i> Server File: <input class="serverFileSelect" v-model="selectionData['selectedFile']"></input>
                     </div>
                     <div class="inputs">
-                        <button class="btn btnFileSelect" title="Select File to Upload" v-on:click="fileSelect()"><i class="far fa-file"></i> File to Upload:  {{ this.localFilePath || "Select File" }}</button>
+                        <button class="btn btnFileSelect" title="Select File to Upload" v-on:click="fileSelect()"><i class="fas fa-file"></i> Local File:  {{ this.localFilePath || "Select File" }}</button>
                     </div>
                 </div>
                 <div class="buttonContainer">
                     <button class="btn btnCancel" v-on:click="closeWindow()">Cancel</button>
+                    <button class="btn btnCancel" v-on:click="deleteFile()"><i class="fas fa-trash-alt"></i> Delete</button>
                     <button class="btn btnConfirm" title="Upload File" v-on:click="uploadFile()"><i class="fas fa-upload"></i> Upload</button>
                     <button class="btn btnConfirm" title="Refresh Server File Tree" v-on:click="reloadFileTree()"><i class="fas fa-sync-alt"></i> Reload</button>
                 </div>

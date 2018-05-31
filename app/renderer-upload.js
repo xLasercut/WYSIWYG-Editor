@@ -35,7 +35,7 @@ var uploadApp = new Vue({
             try {
                 checkVariable(configData["apiKey"], "apiKey")
                 var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
-                neocitiesHelper.getItem("/api/list")
+                neocitiesHelper.getServerList()
                 .then((data) => {
                     var filetreeManager = new FiletreeManager(data.files)
                     this.fileTreeData = filetreeManager.createFileTree()
@@ -54,11 +54,27 @@ var uploadApp = new Vue({
                 checkVariable(configData["apiKey"], "apiKey")
                 checkVariable(this.localFilePath, "localFilePath")
                 checkVariable(this.selectionData["selectedFile"], "serverFilePath")
-                var value = fs.createReadStream(this.localFilePath)
-                var formData = {}
-                formData[this.selectionData["selectedFile"]] = value
                 var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
-                neocitiesHelper.postItem("/api/upload", formData)
+                neocitiesHelper.uploadFile(this.selectionData["selectedFile"], this.localFilePath)
+                .then ((data) => {
+                    alert(data.message)
+                    this.reloadFileTree()
+                })
+                .catch ((err) => {
+                    console.log(err)
+                })
+            }
+            catch (e) {
+                notificationManager.showNotification(e)
+            }
+        },
+        deleteFile: function () {
+            var configData = JSON.parse(fileManager.readFile())
+            try {
+                checkVariable(configData["apiKey"], "apiKey")
+                checkVariable(this.selectionData["selectedFile"], "serverFilePath")
+                var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
+                neocitiesHelper.deleteFile(this.selectionData["selectedFile"])
                 .then ((data) => {
                     alert(data.message)
                     this.reloadFileTree()

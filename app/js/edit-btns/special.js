@@ -2,7 +2,7 @@ module.exports = {
     btns: [
         {
             tag: 'insertHTML',
-            value: '<i class="far fa-image"></i>',
+            value: '<i class="fas fa-image"></i>',
             option: 'insertImage',
             tooltip: 'Insert Image'
         },

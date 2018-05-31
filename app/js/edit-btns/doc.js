@@ -13,7 +13,7 @@ module.exports = [
     },
     {
         tag: 'copy',
-        value: '<i class="far fa-copy"></i>',
+        value: '<i class="fas fa-copy"></i>',
         option: null,
         tooltip: 'Copy'
     },
@@ -25,7 +25,7 @@ module.exports = [
     },
     {
         tag: 'paste',
-        value: '<i class="far fa-clipboard"></i>',
+        value: '<i class="fas fa-clipboard"></i>',
         option: null,
         tooltip: 'Paste'
     }

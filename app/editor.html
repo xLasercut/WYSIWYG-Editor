@@ -14,9 +14,15 @@
             <div class="navBar">
                 <button class="btn btnUpload" v-on:click="uploadFile()"><i class="fas fa-upload"></i></button>
                 <div class="btnGroup">
-                    <button class="btn btnEdit" v-on:click="newDocument()" title="New File"><i class="far fa-file"></i></button>
-                    <button class="btn btnEdit" v-on:click="saveDocument()" title="Save File"><i class="far fa-save"></i></button>
-                    <button class="btn btnEdit" v-on:click="openDocument()" title="Open File"><i class="far fa-folder-open"></i></button>
+                    <button class="btn btnEdit" v-on:click="newDocument()" title="New File"><i class="fas fa-file"></i></button>
+                    <div class="dropdown" title="Save File">
+                        <i class="fas fa-hdd"></i>
+                        <div class="dropdownContent">
+                            <button class="btn btnEdit btnDropdown" v-on:click="saveDocument(false)" title="Save File"><b>Save</b></button>
+                            <button class="btn btnEdit btnDropdown" v-on:click="saveDocument(true)" title="Save As File"><b>Save As</b></button>
+                        </div>
+                    </div>
+                    <button class="btn btnEdit" v-on:click="openDocument()" title="Open File"><i class="fas fa-folder-open"></i></button>
                 </div>
                 <div class="btnGroup">
                     <button class="btn btnEdit" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in docBtns"></button>
