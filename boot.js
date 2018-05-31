@@ -11,6 +11,13 @@ let mainWindow
 
 global.debug = false
 
+for (var item of process.argv) {
+    if (item == "-debug") {
+        global.debug = true
+        break
+    }
+}
+
 const debug = global.debug
 
 function createMainWindow () {

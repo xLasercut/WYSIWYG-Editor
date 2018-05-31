@@ -4,7 +4,8 @@
   "description": "a WYSIWYG html page editor",
   "main": "boot.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "debug": "electron . -debug"
   },
   "repository": {
     "type": "git",
