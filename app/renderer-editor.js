@@ -6,6 +6,7 @@ const FileManager = require('./js/file-manager.js')
 const DialogManager = require('./js/dialog-manager.js')
 const PromptManager = require('./js/prompt-manager.js')
 const HTMLStringCreator = require('./js/htmlstring-creator.js')
+const WindowManager = require('./js/window-manager.js')
 
 const editBtns = require('./js/edit-btns.js')
 const windows = require('./js/window-settings')
@@ -21,35 +22,9 @@ const specials = [
 const debug = remote.getGlobal("debug")
 
 let currentWindow = remote.getCurrentWindow()
-let promptWindow
-let settingsWindow
-let uploadWindow
+var windowManager = new WindowManager(currentWindow)
 
-function createChildWindow (childWindow, parentWindow, windowOptions, url, windowData) {
-    windowOptions["parent"] = parentWindow
-    childWindow = new BrowserWindow(windowOptions)
-
-    if (debug) {
-        childWindow.webContents.openDevTools()
-    }
-    else {
-        childWindow.setMenu(null)
-    }
-    childWindow.loadURL(url)
-
-    childWindow.once('ready-to-show', function () {
-        childWindow.show()
-        if (windowData) {
-            childWindow.webContents.send(windowData.name, windowData.data)
-        }
-    })
-
-    childWindow.on('closed', function () {
-        childWindow = null
-    })
-}
-
-const editorApp = new Vue({
+var editorApp = new Vue({
     el: "#editorApp",
     data: {
         debug: debug,
@@ -94,10 +69,10 @@ const editorApp = new Vue({
             console.log(this.$refs.contents.innerHTML)
         },
         openSettings: function () {
-            createChildWindow(settingsWindow, currentWindow, windows.settings.options, windows.settings.url)
+            windowManager.newWindow("settings", windows.settings.url, windows.settings.options)
         },
         uploadFile: function () {
-            createChildWindow(uploadWindow, currentWindow, windows.upload.options, windows.upload.url)
+            windowManager.newWindow("upload", windows.upload.url, windows.upload.options)
         }
     }
 })

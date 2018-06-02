@@ -1,11 +1,5 @@
-const remote = require('electron').remote
-const {BrowserWindow} = remote
-const url = require('url')
-const path = require('path')
-
+const WindowManager = require('./window-manager.js')
 const windowSettings = require('./window-settings.js')
-
-let promptWindow
 
 function parseOptions (inputOptions) {
     var inputs = []
@@ -32,20 +26,13 @@ class PromptManager {
     }
 
     newPrompt (inputs) {
-        promptWindow = new BrowserWindow(this.windowOptions)
-
-        promptWindow.setMenu(null)
-        promptWindow.loadURL(this.url)
-
-        promptWindow.once('ready-to-show', function () {
-            promptWindow.show()
-            var parsedOptions = parseOptions(inputs)
-            promptWindow.webContents.send("inputs", parsedOptions)
-        })
-
-        promptWindow.on('closed', function () {
-            promptWindow = null
-        })
+        var windowManager = new WindowManager(this.parentWindow)
+        var parsedOptions = parseOptions(inputs)
+        var windowData = {
+            eventName: "inputs",
+            eventData: parsedOptions
+        }
+        windowManager.newWindow("prompt", this.url, this.windowOptions, windowData)
     }
 }
 
