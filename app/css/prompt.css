@@ -1,66 +1,80 @@
 .headerBar {
-    width: 100%;
+    width: calc(100% - 10px);
     height: 20px;
     background: var(--main-blue);
     float: left;
+    color: white;
+    padding: 5px;
 }
 
 .inputContainer {
     width: 100%;
-    height: calc(100% - 70px);
+    background: none;
     padding-top: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     float: left;
 }
 
 .buttonsContainer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
     height: 35px;
     background: var(--main-blue);
-    float: left;
 }
 
-.inputs {
+.inputDiv {
     width: 100%;
     float: left;
     text-align: center;
+    background: none;
     font-size: 12pt;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.inputs label {
+.inputLabel {
     display: inline-block;
+    font-size: inherit;
     width: 25%;
-    float: left;
     text-align: right;
-    padding-top: 5px;
-    padding-right: 5px;
-    font-size: inherit;
-}
-
-.inputs input {
-    width: 50%;
-    display: inline-block;
+    padding: 5px;
     float: left;
+}
+
+.promptInput {
+    display: inline-block;
     font-size: inherit;
+    width: 50%;
+    float: left;
     border: 1px solid var(--main-blue);
     padding: 5px;
 }
 
-.inputs input:focus {
+.promptInput:focus {
     outline: 2px solid var(--main-blue);
 }
 
-.inputs textarea {
-    width: calc(100% - 40px);
-    height: 170px;
-    resize: none;
-    outline: none;
-    border: 1px solid var(--main-blue);
-    padding: 5px;
+.promptTa {
+    font-size: inherit;
     font-family: inherit;
+    resize: none;
+    width: 50%;
+    float: left;
+    margin-left: calc(25% + 10px);
+    padding: 5px;
+    height: 250px;
+    border: 1px solid var(--main-blue);
 }
 
-.inputs textarea:focus {
+.promptTa:focus {
     outline: 2px solid var(--main-blue);
+}
+
+.promptSelect {
+    float: left;
+    width: 50%;
+    padding: 5px;
+    font-size: inherit;
 }

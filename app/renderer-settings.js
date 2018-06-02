@@ -20,6 +20,13 @@ var settingsApp = new Vue({
         },
         cancelOption: function () {
             currentWindow.close()
+        },
+        resizeWindow: function () {
+            var height = this.$refs.inputContainer.clientHeight  + 65
+            currentWindow.setContentSize(600, height)
         }
     }
 })
+
+
+settingsApp.resizeWindow()

@@ -10,9 +10,6 @@ module.exports = {
         }),
         options: {
             modal: true,
-            height: 250,
-            width: 400,
-            useContentSize: true,
             resizable: false,
             show: false
         }
@@ -25,9 +22,6 @@ module.exports = {
         }),
         options: {
             modal: true,
-            height: 150,
-            width: 400,
-            useContentSize: true,
             resizable: false,
             show: false
         }

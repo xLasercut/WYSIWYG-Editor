@@ -10,13 +10,16 @@
     </head>
     <body>
         <div id="promptApp" class="appContainer">
-            <div class="headerBar"></div>
-            <div class="inputContainer">
-                <div v-show="showTextBox.indexOf(tag) == -1" class="inputs"><label>URL </label><input v-model="url" placeholder="https://"></input></div>
-                <div v-show="showSizeControl.indexOf(tag) > -1" class="inputs"><label>Height </label><input type="number" v-model="height"></input></div>
-                <div v-show="showSizeControl.indexOf(tag) > -1" class="inputs"><label>Width </label><input type="number" v-model="width"></input></div>
-                <div v-show="showTextInput.indexOf(tag) > -1" class="inputs"><label>Text </label><input v-model="text"></input></div>
-                <div v-show="showTextBox.indexOf(tag) > -1" class="inputs"><textarea ref="ta" placeholder="Insert HTML"></textarea></div>
+            <div class="headerBar">{{ title }}</div>
+            <div class="inputContainer" ref="inputContainer">
+                <div class="inputDiv" v-for="input in inputs">
+                    <span class="inputLabel" v-if="input.type != 'textarea'">{{ input.name }}</span>
+                    <input v-if="input.type == 'input'" :type="input.inputType" :ref="input.name" class="promptInput" :placeholder="input.placeholder"></input>
+                    <textarea v-if="input.type == 'textarea'" :ref="input.name" class="promptTa" :placeholder="input.placeholder"></textarea>
+                    <select v-if="input.type == 'select'" :ref="input.name" class="promptSelect">
+                        <option v-for="option in input.options">{{ option }}</option>
+                    </select>
+                </div>
             </div>
             <div class="buttonsContainer">
                 <button class="btn btnCancel" v-on:click="cancelOption()">Cancel</button>

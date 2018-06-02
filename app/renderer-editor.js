@@ -1,15 +1,16 @@
 const remote = require('electron').remote
 const {dialog, BrowserWindow} = remote
 const ipcRenderer = require('electron').ipcRenderer
-const url = require('url')
-const path = require('path')
 
 const FileManager = require('./js/file-manager.js')
 const DialogManager = require('./js/dialog-manager.js')
+const PromptManager = require('./js/prompt-manager.js')
+const HTMLStringCreator = require('./js/htmlstring-creator.js')
 
 const editBtns = require('./js/edit-btns.js')
 const windows = require('./js/window-settings')
 const dialogSettings = require('./js/dialog-settings.js')
+const promptSettings = require('./js/prompt-settings.js')
 
 var dialogManager = new DialogManager()
 
@@ -61,11 +62,8 @@ const editorApp = new Vue({
     methods: {
         addFormat: function (tag, option) {
             if (specials.indexOf(tag) > -1) {
-                var windowData = {
-                    name: "editorOptions",
-                    data: option
-                }
-                createChildWindow(promptWindow, currentWindow, windows.prompt.options, windows.prompt.url, windowData)
+                var promptManager = new PromptManager(currentWindow)
+                promptManager.newPrompt(promptSettings[option])
             }
             else {
                 document.execCommand(tag, false, option)
@@ -104,6 +102,7 @@ const editorApp = new Vue({
     }
 })
 
-ipcRenderer.on("editorOptions", function(evt, data) {
-    document.execCommand('insertHTML', false, data)
+ipcRenderer.on("promptReturns", function(evt, data) {
+    var htmlStringCreator = new HTMLStringCreator(data)
+    document.execCommand('insertHTML', false, htmlStringCreator.getHTMLString())
 })

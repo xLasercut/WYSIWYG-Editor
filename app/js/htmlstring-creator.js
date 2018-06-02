@@ -49,27 +49,22 @@ function sanitizeUrl (url) {
 }
 
 class HTMLStringCreator {
-    constructor (tag, url, height, width, text, textarea) {
-        this.tag = tag
-        this.url = sanitizeUrl(url)
-        this.height = height
-        this.width = width
-        this.text = text
-        this.textarea = textarea
+    constructor (htmlData) {
+        this.htmlData = htmlData
     }
 
     getHTMLString () {
-        if (this.tag == 'insertImage') {
-            return createImageHTML(this.url, this.height, this.width)
+        if (this.htmlData.title == 'Insert Image') {
+            return createImageHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
         }
-        else if (this.tag == 'insertLink') {
-            return createLinkHTML(this.url, this.text)
+        else if (this.htmlData.title == 'Insert Link') {
+            return createLinkHTML(this.htmlData.Url, this.htmlData.Text)
         }
-        else if (this.tag == 'insertYoutube') {
-            return createYoutubeHTML(this.url, this.height, this.width)
+        else if (this.htmlData.title == 'Insert Youtube Video') {
+            return createYoutubeHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
         }
-        else if (this.tag == 'insertCode') {
-            return this.textarea
+        else if (this.htmlData.title == 'Insert HTML') {
+            return this.htmlData.HTMLCode
         }
     }
 }
