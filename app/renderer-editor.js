@@ -33,6 +33,7 @@ var editorApp = new Vue({
         fontSizeBtns: editBtns.fontSizeBtns,
         fontTemplateBtns: editBtns.fontTemplateBtns,
         fontColorBtns: editBtns.fontColorBtns,
+        fontFamilyBtns: editBtns.fontFamilyBtns,
         currentFilePath: null
     },
     methods: {

@@ -56,6 +56,12 @@
                             </button>
                         </div>
                     </div>
+                    <div class="dropdown" title="Font Family">
+                        <i class="fas fa-font"></i>
+                        <div class="dropdownContent contentFonts">
+                            <button class="btn btnEdit btnDropdown" :title="button.option" v-on:click="addFormat(button.tag, button.option)" v-for="button in fontFamilyBtns" :style="button.style">{{ button.option }}</button>
+                        </div>
+                    </div>
                 </div>
                 <div v-for="btnGroup in formatBtnGroups" class="btnGroup">
                     <button v-for="button in btnGroup.btns" :title="button.tooltip" :class="getBtnClass(button.class)" v-on:click="addFormat(button.tag, button.option)" v-html="button.value"></button>
