@@ -32,6 +32,7 @@ var editorApp = new Vue({
         docBtns: editBtns.docBtns,
         fontSizeBtns: editBtns.fontSizeBtns,
         fontTemplateBtns: editBtns.fontTemplateBtns,
+        fontColorBtns: editBtns.fontColorBtns,
         currentFilePath: null
     },
     methods: {
@@ -73,6 +74,12 @@ var editorApp = new Vue({
         },
         uploadFile: function () {
             windowManager.newWindow("upload", windows.upload.url, windows.upload.options)
+        },
+        getBtnClass: function (btnClass) {
+            if (!btnClass) {
+                return "btn btnEdit"
+            }
+            return btnClass
         }
     }
 })

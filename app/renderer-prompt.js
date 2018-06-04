@@ -27,7 +27,7 @@ var promptApp = new Vue({
             currentWindow.close()
         },
         resizeWindow: function () {
-            var height = this.$refs.inputContainer.clientHeight  + 65
+            var height = this.$refs.inputContainer.clientHeight  + 67
             currentWindow.setContentSize(600, height)
         }
     }

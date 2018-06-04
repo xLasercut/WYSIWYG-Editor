@@ -12,7 +12,9 @@
     <body>
         <div id="editorApp" class="appContainer">
             <div class="navBar">
-                <button class="btn btnUpload" v-on:click="uploadFile()"><i class="fas fa-upload"></i></button>
+                <div class="btnGroup">
+                    <button class="btn btnUpload" v-on:click="uploadFile()"><i class="fas fa-upload"></i></button>
+                </div>
                 <div class="btnGroup">
                     <button class="btn btnEdit" v-on:click="newDocument()" title="New File"><i class="fas fa-file"></i></button>
                     <div class="dropdown" title="Save File">
@@ -27,27 +29,41 @@
                 <div class="btnGroup">
                     <button class="btn btnEdit" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in docBtns"></button>
                 </div>
-                <button title="Settings" class="btn btnEdit" style="float: right;" v-on:click="openSettings()"><i class="fas fa-cog"></i></button>
-                <button v-if="debug" title="Show content in console" style="float: right;" class="btn btnEdit" v-on:click="getText()"><i class="fas fa-terminal"></i></button>
+                <div class="btnGroup" style="float: right;">
+                    <button v-if="debug" title="Show content in console" class="btn btnEdit" v-on:click="getText()"><i class="fas fa-terminal"></i></button>
+                    <button title="Settings" class="btn btnEdit" v-on:click="openSettings()"><i class="fas fa-cog"></i></button>
+                </div>
             </div>
             <div class="editBar">
-                <div class="dropdown" title="Font Size">
-                    <i class="fas fa-text-height"></i>
-                    <div class="dropdownContent">
-                        <button class="btn btnEdit btnDropdown" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in fontSizeBtns"></button>
+                <div class="btnGroup">
+                    <div class="dropdown" title="Font Size">
+                        <i class="fas fa-text-height"></i>
+                        <div class="dropdownContent">
+                            <button class="btn btnEdit btnDropdown" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in fontSizeBtns"></button>
+                        </div>
                     </div>
-                </div>
-                <div class="dropdown" title="Heading">
-                    <i class="fas fa-font"></i>
-                    <div class="dropdownContent">
-                        <button class="btn btnEdit btnDropdown" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in fontTemplateBtns"></button>
+                    <div class="dropdown" title="Heading">
+                        <i class="fas fa-paragraph"></i>
+                        <div class="dropdownContent">
+                            <button class="btn btnEdit btnDropdown" :title="button.tooltip" v-on:click="addFormat(button.tag, button.option)" v-html="button.value" v-for="button in fontTemplateBtns"></button>
+                        </div>
+                    </div>
+                    <div class="dropdown" title="Font Colour">
+                        <i class="fas fa-eye-dropper"></i>
+                        <div class="dropdownContent">
+                            <button class="btn btnColor" v-for="button in fontColorBtns" v-on:click="addFormat(button.tag, button.option)" :title="button.tooltip">
+                                <div class="fontColorIcon" :style="button.value"></div>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div v-for="btnGroup in formatBtnGroups" class="btnGroup">
-                    <button v-for="button in btnGroup.btns" :title="button.tooltip" class="btn btnEdit" v-on:click="addFormat(button.tag, button.option)" v-html="button.value"></button>
+                    <button v-for="button in btnGroup.btns" :title="button.tooltip" :class="getBtnClass(button.class)" v-on:click="addFormat(button.tag, button.option)" v-html="button.value"></button>
                 </div>
             </div>
-            <div class="contents" ref="contents" contenteditable="true"></div>
+            <div class="contentContainer">
+                <div class="contents" ref="contents" contenteditable="true"></div>
+            </div>
         </div>
     </body>
     <script>

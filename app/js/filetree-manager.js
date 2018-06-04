@@ -5,16 +5,44 @@ function includes(item, include) {
     return false
 }
 
+function getFileType (filePath) {
+    var codes = ["js", "css", "json"]
+    var imgs = ["png", "jpg", "gif", "svg", "ico"]
+    var audios = ["mid", "midi"]
+    var texts = ["html", "htm", "txt", "text", "md", "markdown"]
+    var xfiles = ["csv", "xml"]
+    var pathArray = filePath.toLowerCase().split(".")
+    var fileType = pathArray[pathArray.length - 1]
+    if (includes(codes, fileType)) {
+        return "codes"
+    }
+    else if (includes(imgs, fileType)) {
+        return "imgs"
+    }
+    else if (includes(audios, fileType)) {
+        return "audios"
+    }
+    else if (includes(texts, fileType)) {
+        return "texts"
+    }
+    else if (includes(xfiles, fileType)) {
+        return "xfiles"
+    }
+    return "normal"
+}
+
 function appendInputType (item) {
     if (item.is_directory) {
         item["inputType"] = "checkbox"
         item["model"] = item.path
         item["value"] = false
+        item["class"] = "folder"
     }
     else {
         item["inputType"] = "radio"
         item["model"] = "selectedFile"
         item["value"] = item.path
+        item["class"] = getFileType(item.path)
     }
 }
 

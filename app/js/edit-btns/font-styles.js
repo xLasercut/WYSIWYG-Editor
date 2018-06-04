@@ -22,19 +22,22 @@ module.exports = {
             tag: 'underline',
             value: '<i class="fas fa-underline"></i>',
             option: null,
-            tooltip: 'Underline'
+            tooltip: 'Underline',
+            class: 'btn btnEdit btnULine'
         },
         {
             tag: 'subscript',
             value: '<i class="fas fa-subscript"></i>',
             option: null,
-            tooltip: 'Subscript'
+            tooltip: 'Subscript',
+            class: 'btn btnEdit btnSub'
         },
         {
             tag: 'superscript',
             value: '<i class="fas fa-superscript"></i>',
             option: null,
-            tooltip: 'Superscript'
+            tooltip: 'Superscript',
+            class: 'btn btnEdit btnSup'
         },
         {
             tag: 'removeFormat',

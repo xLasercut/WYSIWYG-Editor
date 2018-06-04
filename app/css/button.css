@@ -4,116 +4,123 @@
     height: 100%;
     outline: none;
     border: none;
-    text-decoration: none;
-    display: block;
 }
 
 .btnEdit {
     width: 40px;
-    line-height: 100%;
-    font-size: 12pt;
+    font-size: inherit;
     transition: all 0.1s;
-    background: var(--main-blue);
-    color: white;
-    border: 0px solid var(--main-blue-dark);
+    background: none;
+    color: var(--gray-darkest);
 }
 
 .btnEdit:hover {
-    line-height: calc(100% - 3px);
-    background: var(--main-blue-light);
-    border-bottom: 3px solid var(--main-blue-dark);
-    color: var(--main-blue-dark);
+    background: var(--gray-dark);
 }
 
 .btnEdit:active {
-    border-bottom: 0px solid var(--main-blue-dark);
-    line-height: 100%;
+    background: var(--gray-darker);
 }
 
 .btnUpload {
     float: left;
-    background: var(--main-blue-darker);
-    color: white;
-    line-height: 100%;
+    background: var(--gray);
+    color: var(--gray-darkest);
     width: 50px;
-    transition: all 0.3s;
-    margin-right: 5px;
+    transition: all 0.1s;
     padding: 0;
 }
 
 .btnUpload:hover {
-    background: var(--main-blue-dark);
+    color: white;
+    background: var(--main-blue);
 }
 
 .btnUpload:active {
-    padding-top: -5px;
-    padding-bottom: 5px;
+    color: white;
+    background: var(--main-blue-dark);
 }
 
 .btnConfirm {
     float: right;
     width: 80px;
-    color: white;
-    line-height: calc(100% - 5px);
     transition: all 0.1s;
     font-size: 11pt;
-    background: var(--main-blue-darker);
-    border-bottom: 5px solid var(--main-green-light);
+    background: none;
+    color: var(--main-green);
 }
 
 .btnConfirm:hover {
+    color: white;
     background: var(--main-green-light);
-    border-bottom: 5px solid var(--main-green);
 }
 
 .btnConfirm:active {
-    line-height: 100%;
-    border-bottom: 0px solid var(--main-green);
+    color: white;
+    background: var(--main-green);
 }
 
 .btnCancel {
     float: right;
-    background: var(--main-blue-darker);
-    color: white;
+    background: none;
+    color: var(--main-red);
     font-size: 11pt;
-    line-height: calc(100% - 5px);
     transition: all 0.1s;
     width: 80px;
-    border-bottom: 5px solid var(--main-red-light);
+
 }
 
 .btnCancel:hover {
+    color: white;
     background: var(--main-red-light);
-    border-bottom: 5px solid var(--main-red);
 }
 
 .btnCancel:active {
-    border-bottom: 0px solid var(--main-red);
-    line-height: 100%;
+    color: white;
+    background: var(--main-red);
 }
 
 .btnDropdown {
+    margin-top: 1px;
+    margin-bottom: 1px;
     height: 25px;
-    width: 100%;
+    width: 98%;
+    margin-left: 1%;
     font-size: 11pt;
 }
 
 .btnFileSelect {
     width: 100%;
-    line-height: calc(100% - 5px);
-    border-bottom: 5px solid var(--main-green-light);
-    background: var(--main-blue-darker);
-    color: white;
+    background: none;
+    color: var(--gray-darkest);
     font-size: 12pt;
     transition: all 0.1s;
 }
 
 .btnFileSelect:hover {
-    background: var(--main-green-light);
-    border-bottom: 5px solid var(--main-green);
+    background: var(--gray-dark);
 }
 
 .btnFileSelect:active {
-    line-height: 100%;
-    border-bottom: 0px solid var(--main-green);
+    background: var(--gray-darker);
+}
+
+
+.btnColor {
+    height: 25px;
+    width: 98%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1%;
+    background: none;
+}
+
+.btnColor:hover div {
+    border: 1px solid var(--main-yellow);
+    outline: 1px solid var(--main-orange);
+}
+
+.btnColor:active div {
+    border: 1px solid var(--main-yellow);
+    outline: 2px solid var(--main-orange);
 }

@@ -1,6 +1,7 @@
 .titleContainer {
-    background: var(--main-blue);
-    color: white;
+    background: var(--gray-light);
+    color: var(--gray-darkest);
+    border-bottom: 1px solid var(--gray-dark);
     width: calc(100% - 10px);
     height: 20px;
     float: left;
@@ -8,10 +9,10 @@
 }
 
 .fileTreeContainer {
-    height: calc(100% - 110px);
+    height: calc(100% - 112px);
     width: 100%;
     background: none;
-    color: var(--main-blue-darker);
+    color: black;
     float: left;
     overflow: auto;
 }
@@ -33,11 +34,14 @@
 .infoContainer {
     height: 80px;
     width: calc(100% - 320px);
-    background: var(--main-blue);
+    background: var(--gray-light);
+    border-top: 1px solid var(--gray-dark);
     float: left;
 }
 
 .buttonContainer {
+    background: var(--gray-light);
+    border-top: 1px solid var(--gray-dark);
     width: 320px;
     height: 80px;
     position: absolute;
@@ -55,36 +59,41 @@
 .inputs {
     height: 50%;
     width: 100%;
-    color: white;
+    color: var(--gray-darkest);
 }
 
 .serverFileSelect {
     margin-top: 8px;
     width: 60%;
     font-size: 12pt;
-    border: 1px solid var(--main-blue-darker);
+    border: 1px solid var(--gray-darker);
     padding: 2px;
 }
 
 .serverFileSelect:focus {
-    outline: 2px solid var(--main-blue-darker);
+    outline: 2px solid var(--gray-darker);
 }
 
 .fileCheck:checked .fileCheck::parent {
     background: gray;
 }
 
-input[type=checkbox]+label {
+.folder+label {
     padding: 5px;
     cursor: pointer;
 }
 
-input[type=checkbox]+label:before {
-    font-family: FontAwesome;
-    content: "\f07b\ ";
+.folder:hover+label {
+    background: var(--main-blue-lightest);
 }
 
-input[type=checkbox]:checked+label:before {
+.folder+label:before {
+    font-family: FontAwesome;
+    content: "\f07b\ ";
+    color: var(--main-yellow);
+}
+
+.folder:checked+label:before {
     content: "\f07c\ ";
 }
 
@@ -93,11 +102,46 @@ input[type=radio]+label {
     cursor: pointer;
 }
 
-input[type=radio]+label:before {
+.texts+label:before {
     font-family: FontAwesome;
     content: "\f15c\ ";
+    color: var(--gray-darkest);
+}
+
+.normal+label:before {
+    font-family: FontAwesome;
+    content: "\f15b\ ";
+    color: var(--gray-darkest);
+}
+
+.xfiles+label:before {
+    font-family: FontAwesome;
+    content: "\f1c3\ ";
+    color: var(--gray-darkest);
+}
+
+input[type=radio]:hover+label {
+    background: var(--main-blue-lightest);
 }
 
 input[type=radio]:checked+label {
-    background: var(--main-blue-light);
+    background: var(--main-blue-lightest);
+}
+
+.audios+label:before {
+    font-family: FontAwesome;
+    content: "\f1c7\ ";
+    color: var(--gray-darkest);
+}
+
+.codes+label:before {
+    font-family: FontAwesome;
+    content: "\f1c9\ ";
+    color: var(--gray-darkest);
+}
+
+.imgs+label:before {
+    font-family: FontAwesome;
+    content: "\f1c5\ ";
+    color: var(--gray-darkest);
 }

@@ -1,9 +1,10 @@
 .headerBar {
     width: calc(100% - 10px);
     height: 20px;
-    background: var(--main-blue);
+    background: var(--gray-light);
+    border-bottom: 1px solid var(--gray-dark);
     float: left;
-    color: white;
+    color: var(--gray-darkest);
     padding: 5px;
 }
 
@@ -21,7 +22,8 @@
     bottom: 0;
     width: 100%;
     height: 35px;
-    background: var(--main-blue);
+    background: var(--gray-light);
+    border-top: 1px solid var(--gray-dark);
 }
 
 .inputDiv {
@@ -48,12 +50,12 @@
     font-size: inherit;
     width: 50%;
     float: left;
-    border: 1px solid var(--main-blue);
+    border: 1px solid var(--gray-darker);
     padding: 5px;
 }
 
 .promptInput:focus {
-    outline: 2px solid var(--main-blue);
+    outline: 2px solid var(--gray-darker);
 }
 
 .promptTa {
@@ -65,11 +67,11 @@
     margin-left: calc(25% + 10px);
     padding: 5px;
     height: 250px;
-    border: 1px solid var(--main-blue);
+    border: 1px solid var(--gray-darker);
 }
 
 .promptTa:focus {
-    outline: 2px solid var(--main-blue);
+    outline: 2px solid var(--gray-darker);
 }
 
 .promptSelect {

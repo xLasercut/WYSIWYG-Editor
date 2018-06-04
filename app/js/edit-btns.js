@@ -7,7 +7,8 @@ const editBtns = {
     ],
     docBtns: require('./edit-btns/doc.js'),
     fontSizeBtns: require('./edit-btns/font-sizes.js'),
-    fontTemplateBtns: require('./edit-btns/font-templates.js')
+    fontTemplateBtns: require('./edit-btns/font-templates.js'),
+    fontColorBtns: require('./edit-btns/font-colors.js')
 }
 
 module.exports = editBtns

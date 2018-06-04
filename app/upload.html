@@ -15,7 +15,7 @@
             <div class="fileTreeContainer">
                 <div v-for="item in fileTreeData" v-show="showFile(item.allParents)" class="fileContainer">
                     <span v-html="item.spaces"></span>
-                    <input :type="item.inputType" :id="item.path" :value="item.value" v-model="selectionData[item.model]"></input>
+                    <input :type="item.inputType" :id="item.path" :value="item.value" :class="item.class" v-model="selectionData[item.model]"></input>
                     <label :for="item.path" v-html="item.name"></label>
                 </div>
             </div>
