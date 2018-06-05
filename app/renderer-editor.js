@@ -43,18 +43,18 @@ var editorApp = new Vue({
                 promptManager.newPrompt(promptSettings[option])
             }
             else {
-                document.execCommand(tag, false, option)
+                this.getFrameContent().document.execCommand(tag, false, option)
             }
         },
         newDocument: function () {
-            this.$refs.contents.innerHTML = null
+            this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML = null
             this.currentFilePath = null
         },
         openDocument: function () {
             this.currentFilePath = dialogManager.openDialog(dialogSettings.webPage)
             if (this.currentFilePath) {
                 var htmlDoc = new FileManager(this.currentFilePath)
-                this.$refs.contents.innerHTML = htmlDoc.readFile()
+                this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML = htmlDoc.readFile()
             }
         },
         saveDocument: function (saveAs) {
@@ -64,11 +64,11 @@ var editorApp = new Vue({
 
             if (this.currentFilePath) {
                 var htmlDoc = new FileManager(this.currentFilePath)
-                htmlDoc.saveFile(this.$refs.contents.innerHTML)
+                htmlDoc.saveFile(this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML)
             }
         },
         getText: function () {
-            console.log(this.$refs.contents.innerHTML)
+            console.log(this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML)
         },
         openSettings: function () {
             windowManager.newWindow("settings", windows.settings.url, windows.settings.options)
@@ -81,11 +81,17 @@ var editorApp = new Vue({
                 return "btn btnEdit"
             }
             return btnClass
+        },
+        getFrameContent: function () {
+            return this.$refs.contents.contentWindow
+        },
+        keepFocus: function (event) {
+            event.preventDefault()
         }
     }
 })
 
 ipcRenderer.on("promptReturns", function(evt, data) {
     var htmlStringCreator = new HTMLStringCreator(data)
-    document.execCommand('insertHTML', false, htmlStringCreator.getHTMLString())
+    editorApp.getFrameContent().document.execCommand('insertHTML', false, htmlStringCreator.getHTMLString())
 })

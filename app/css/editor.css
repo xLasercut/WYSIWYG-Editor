@@ -21,15 +21,11 @@
 }
 
 .contents {
-    min-height: calc(100% - 140px);
-    width: 80%;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    height: calc(100% - 4px);
+    width: 100%;
     background: white;
     outline: none;
-    padding: 20px;
-    border: 1px solid var(--gray-dark);
+    border: none;
 }
 
 .dropdown {
