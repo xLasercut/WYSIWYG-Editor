@@ -49,3 +49,19 @@ body {
     height: 100%;
     font-size: inherit;
 }
+
+.btnGroup .btnDiv:last-child div {
+    border-right: 1px solid var(--gray);
+}
+
+.btnGroup:last-child .btnDiv:last-child div {
+    border-right: none;
+}
+
+.btnGroup .btnDiv:last-child label {
+    border-right: 1px solid var(--gray);
+}
+
+.btnGroup:last-child .btnDiv:last-child label {
+    border-right: none;
+}

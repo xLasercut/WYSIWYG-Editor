@@ -1,16 +1,23 @@
+.btnDiv {
+    float: left;
+    height: 100%;
+}
+
 .btn {
     cursor: pointer;
     float: left;
     height: 100%;
     outline: none;
     border: none;
+    background: none;
+    transition: all 0.1s;
 }
 
 .btnEdit {
-    width: 40px;
+    min-width: 40px;
     font-size: inherit;
-    transition: all 0.1s;
-    background: none;
+    line-height: 35px;
+    text-align: center;
     color: var(--gray-darkest);
 }
 
@@ -18,17 +25,92 @@
     background: var(--gray-dark);
 }
 
-.btnEdit:active {
+.btnInput {
+    display: none;
+}
+
+.btnInput:checked+.btnEdit {
+    background: var(--gray-dark);
+}
+
+.btnInput:active+.btnEdit {
     background: var(--gray-darker);
 }
+
+.btnEdit:hover .dropdownContent {
+    display: block;
+}
+
+.dropdownContent {
+    width: 100px;
+    display: none;
+    position: absolute;
+    float: left;
+    background: var(--gray-lighter);
+    border: 1px solid var(--gray-dark);
+    box-shadow: 0px 0px 10px 0px var(--gray-darker);
+    z-index: 1;
+}
+
+.dropdownLabelFFamily {
+    display: inline-block;
+    width: 160px;
+}
+
+.dropdownLabelFSize {
+    display: inline-block;
+    width: 40px;
+}
+
+.btnDrop {
+    width: calc(100% - 2px);
+    height: 25px;
+    font-size: 11pt;
+    color: inherit;
+    margin: 1px;
+}
+
+.btnDrop:hover {
+    background: var(--gray-dark);
+}
+
+.btnDrop:active {
+    background: var(--gray-darker);
+}
+
+.btnDropColor {
+    width: 18px;
+    height: 18px;
+    margin: 1px;
+    border: 1px solid var(--gray-dark);
+}
+
+.btnDropColor:hover {
+    border: 1px solid var(--main-yellow);
+    outline: 1px solid var(--main-orange);
+}
+
+.btnDropColor:active {
+    border: 1px solid var(--main-yellow);
+    outline: 2px solid var(--main-orange);
+}
+
+.fgcContent {
+    width: 200px;
+}
+
+.familyContent {
+    width: 200px;
+}
+
 
 .btnUpload {
     float: left;
     background: var(--gray);
     color: var(--gray-darkest);
+    text-align: center;
+    line-height: 35px;
     width: 50px;
-    transition: all 0.1s;
-    padding: 0;
 }
 
 .btnUpload:hover {
@@ -80,15 +162,6 @@
     background: var(--main-red);
 }
 
-.btnDropdown {
-    margin-top: 1px;
-    margin-bottom: 1px;
-    height: 25px;
-    width: calc(100% - 2px);
-    margin-left: 1px;
-    font-size: 11pt;
-}
-
 .btnFileSelect {
     width: 100%;
     background: none;
@@ -103,24 +176,4 @@
 
 .btnFileSelect:active {
     background: var(--gray-darker);
-}
-
-
-.btnColor {
-    height: 25px;
-    width: 98%;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    margin-left: 1%;
-    background: none;
-}
-
-.btnColor:hover div {
-    border: 1px solid var(--main-yellow);
-    outline: 1px solid var(--main-orange);
-}
-
-.btnColor:active div {
-    border: 1px solid var(--main-yellow);
-    outline: 2px solid var(--main-orange);
 }

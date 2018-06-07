@@ -1,7 +1,8 @@
-.navBar {
+.docBar {
     height: 35px;
     width: 100%;
     background: var(--gray-lighter);
+    border-bottom: 1px solid var(--gray);
     font-size: 12pt;
 }
 
@@ -14,7 +15,7 @@
 }
 
 .contentContainer {
-    height: calc(100% - 71px);
+    height: calc(100% - 72px);
     width: 100%;
     overflow-y: auto;
     background: var(--gray-light);
@@ -28,58 +29,34 @@
     border: none;
 }
 
-.dropdown {
-    height: 100%;
-    width: 40px;
-    color: var(--gray-darkest);
-    line-height: 36px;
-    float: left;
-    text-align: center;
-    cursor: pointer;
-    font-size: inherit;
-    transition: all 0.1s;
-}
-
-.dropdown:hover {
-    background: var(--gray-dark);
-}
-
-.dropdownContent {
-    width: 100px;
-    display: none;
-    position: absolute;
-    float: left;
-    background: var(--gray-lighter);
+.contentsSource {
+    margin-top: 50px;
+    min-height: calc(100% - 154px);
+    padding: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
     border: 1px solid var(--gray-dark);
-    box-shadow: 0px 0px 10px 0px var(--gray-darker);
-    z-index: 1;
+    white-space: pre-wrap;
+    font-size: 11pt;
+    user-select: none;
+    word-wrap: break-word;
+    margin-bottom: 50px;
 }
 
-.dropdown:hover .dropdownContent {
-    display: block;
-}
 
-.contentFonts {
-    width: 200px;
-}
 
 .btnULine {
-    line-height: 36px;
+    line-height: 37px;
 }
 
 .btnSub {
-    line-height: 40px;
+    line-height: 43px;
     font-size: 13pt;
 }
 
 .btnSup {
-    padding-bottom: 4px;
+    line-height: 33px;
     font-size: 13pt;
-}
-
-.fontColorIcon {
-    height: calc(100% - 8px);
-    width: calc(100% - 2px);
-    border: 1px solid var(--gray-dark);
-    display: block;
 }
