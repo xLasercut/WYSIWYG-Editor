@@ -9,24 +9,32 @@ configFile.ensureFile(JSON.stringify({}))
 
 let mainWindow
 
-global.debug = false
+global.dev = false
 
 for (var item of process.argv) {
-    if (item == "-debug") {
-        global.debug = true
+    if (item == "-dev") {
+        global.dev = true
         break
     }
 }
 
-const debug = global.debug
+const dev = global.dev
 
-function createMainWindow () {
+function getUrl() {
+    if (dev) {
+        return 'http://localhost:8080/editor.html'
+    }
 
-    var mainUrl = url.format({
-        pathname: path.join(__dirname, "app", "editor.html"),
+    return url.format({
+        pathname: path.join(__dirname, "dist", "editor.html"),
         protocol: "file:",
         slashes: true
     })
+}
+
+function createMainWindow () {
+
+    var mainUrl = getUrl()
 
     mainWindow = new BrowserWindow({
         width: 800,
@@ -34,7 +42,7 @@ function createMainWindow () {
         show: false
     })
 
-    if (debug) {
+    if (dev) {
         mainWindow.webContents.openDevTools()
     }
     else {

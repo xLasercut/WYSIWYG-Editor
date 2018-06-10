@@ -5,7 +5,12 @@
   "main": "boot.js",
   "scripts": {
     "start": "electron .",
-    "debug": "electron . -debug"
+    "dev": "electron . -dev",
+    "build": "webpack --config ./webpack-configs/editor.webpack.config.js; webpack --config ./webpack-configs/prompt.webpack.config.js; webpack --config ./webpack-configs/settings.webpack.config.js; webpack --config ./webpack-configs/upload.webpack.config.js",
+    "dev-editor": "webpack-dev-server --config ./webpack-configs/editor.webpack.config.js --port 8080",
+    "dev-prompt": "webpack-dev-server --config ./webpack-configs/prompt.webpack.config.js --port 8081",
+    "dev-settings": "webpack-dev-server --config ./webpack-configs/settings.webpack.config.js --port 8082",
+    "dev-upload": "webpack-dev-server --config ./webpack-configs/upload.webpack.config.js --port 8083"
   },
   "repository": {
     "type": "git",
@@ -14,8 +19,27 @@
   "author": "xLasercut",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/vue-fontawesome": "0.0.23",
     "electron": "^2.0.1",
     "q": "^1.5.1",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "vue": "^2.5.16",
+    "vue-electron": "^1.0.6"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "vue-loader": "^15.2.4",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.11.1",
+    "webpack-cli": "^3.0.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-node-externals": "^1.7.2"
   }
 }
