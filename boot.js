@@ -2,7 +2,7 @@ const electron = require('electron')
 const { app, BrowserWindow } = require('electron')
 const url = require('url')
 const path = require('path')
-const FileManager = require('./app/js/file-manager.js')
+const FileManager = require('./src/assets/js/file-manager.js')
 
 var configFile = new FileManager('./config.json')
 configFile.ensureFile(JSON.stringify({}))
