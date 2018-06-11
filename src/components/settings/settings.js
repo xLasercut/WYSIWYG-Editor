@@ -1,24 +1,28 @@
+import CancelButton  from '../button/cancel-button.vue'
+import GreenButton from '../button/green-button.vue'
+
 const { remote } = require('electron')
-const FileManager = require('../assets/js/file-manager.js')
+const FileManager = require('../../assets/js/file-manager.js')
 
 var fileManager = new FileManager('./config.json')
 var config = JSON.parse(fileManager.readFile())
 
 let currentWindow = remote.getCurrentWindow()
 
-module.exports = {
+export default {
     data: function () {
         return {
-            apiKey: config["apiKey"],
+            apiKey: config["apiKey"]
         }
+    },
+    components: {
+        CancelButton,
+        GreenButton
     },
     methods: {
         confirmOption: function () {
             config["apiKey"] = this.apiKey
             fileManager.saveFile(JSON.stringify(config))
-            currentWindow.close()
-        },
-        cancelOption: function () {
             currentWindow.close()
         },
         resizeWindow: function () {

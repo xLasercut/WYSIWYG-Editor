@@ -1,16 +1,18 @@
+@import '../../assets/scss/colors.scss';
+
 .docBar {
     height: 35px;
     width: 100%;
-    background: var(--gray-lighter);
-    border-bottom: 1px solid var(--gray);
+    background: $gray-lighter;
+    border-bottom: 1px solid $gray;
     font-size: 12pt;
 }
 
 .editBar {
     height: 35px;
     width: 100%;
-    background: var(--gray-lighter);
-    border-bottom: 1px solid var(--gray);
+    background: $gray-lighter;
+    border-bottom: 1px solid $gray;
     font-size: 12pt;
 }
 
@@ -18,7 +20,7 @@
     height: calc(100% - 72px);
     width: 100%;
     overflow-y: auto;
-    background: var(--gray-light);
+    background: $gray-light;
 }
 
 .contents {
@@ -37,26 +39,10 @@
     margin-left: auto;
     margin-right: auto;
     background: white;
-    border: 1px solid var(--gray-dark);
+    border: 1px solid $gray-dark;
     white-space: pre-wrap;
     font-size: 11pt;
     user-select: none;
     word-wrap: break-word;
     margin-bottom: 50px;
-}
-
-
-
-.btnULine {
-    line-height: 37px;
-}
-
-.btnSub {
-    line-height: 43px;
-    font-size: 13pt;
-}
-
-.btnSup {
-    line-height: 33px;
-    font-size: 13pt;
 }

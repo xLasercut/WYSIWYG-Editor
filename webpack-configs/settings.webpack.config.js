@@ -24,10 +24,18 @@ module.exports = {
                 use: 'vue-loader'
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.css$/,
                 use: [
                     'vue-style-loader',
                     'css-loader'
+                ]
+            },
+            {
+                test: /\.s(c|a)ss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
             {

@@ -6,8 +6,6 @@ module.exports = {
             value: 'paragraph',
             type: 'dropdown',
             drop: {
-                containerClass: 'dropdownContent',
-                btnClass: 'btn btnDrop',
                 contents: require('./dropdown/heading.js')
             }
         },
@@ -17,8 +15,8 @@ module.exports = {
             value: 'eye-dropper',
             type: 'dropdown',
             drop: {
-                containerClass: 'dropdownContent fgcContent',
-                btnClass: 'btn btnDropColor',
+                containerClass: 'fgcContent',
+                btnClass: 'btnDropColor',
                 contents: require('./dropdown/fore-color.js')
             }
         }

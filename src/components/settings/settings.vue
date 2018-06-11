@@ -7,14 +7,13 @@
             </div>
         </div>
         <div class="buttonsContainer">
-            <button class="btn btnCancel" v-on:click="cancelOption()">Cancel</button>
-            <button class="btn btnConfirm" v-on:click="confirmOption()">Confirm</button>
+            <cancel-button></cancel-button>
+            <green-button text="Confirm" v-on:click="confirmOption()"></green-button>
         </div>
     </div>
 </template>
 
 
 <script src="./settings.js"></script>
-<style src="../assets/css/main.css"></style>
-<style src="../assets/css/button.css"></style>
-<style src="../assets/css/prompt.css"></style>
+<style src="../../assets/scss/main.scss" lang="scss"></style>
+<style src="../prompt/prompt.scss" lang="scss" scoped></style>

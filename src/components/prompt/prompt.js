@@ -1,3 +1,6 @@
+import CancelButton from '../button/cancel-button.vue'
+import GreenButton from '../button/green-button.vue'
+
 const { remote, ipcRenderer } = require('electron')
 
 let currentWindow = remote.getCurrentWindow()
@@ -11,6 +14,10 @@ export default {
             title: ""
         }
     },
+    components: {
+        CancelButton,
+        GreenButton
+    },
     methods: {
         confirmOption: function () {
             var returnValues = {
@@ -20,9 +27,6 @@ export default {
                 returnValues[ref] = this.$refs[ref][0].value
             }
             editorWindow.webContents.send("promptReturns", returnValues)
-            currentWindow.close()
-        },
-        cancelOption: function () {
             currentWindow.close()
         },
         resizeWindow: function () {
@@ -43,6 +47,5 @@ export default {
             this.inputs = data.inputs
             this.refs = data.refs
         })
-
     }
 }

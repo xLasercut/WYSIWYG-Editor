@@ -42,6 +42,5 @@
 </template>
 
 <script src="./editor.js"></script>
-<style src="../assets/css/main.css"></style>
-<style src="../assets/css/button.css"></style>
-<style src="../assets/css/editor.css"></style>
+<style lang="scss" src="../../assets/scss/main.scss"></style>
+<style lang="scss" src="./editor.scss" scoped></style>

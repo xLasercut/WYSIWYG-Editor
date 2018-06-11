@@ -1,22 +1,29 @@
 import FileTree from './file-tree.vue'
-import CancelButton from './cancel-button.vue'
+import CancelButton from '../button/cancel-button.vue'
+import GreenButton from '../button/green-button.vue'
+import RedButton from '../button/red-button.vue'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 const { remote } = require('electron')
 
-const FileManager = require('../assets/js/file-manager.js')
-const NeocitiesHelper = require('../assets/js/neocities-helper.js')
-const FiletreeManager = require('../assets/js/filetree-manager.js')
-const NotificationManager = require('../assets/js/notification-manager.js')
-const DialogManager = require('../assets/js/dialog-manager.js')
+const FileManager = require('../../assets/js/file-manager.js')
+const NeocitiesHelper = require('../../assets/js/neocities-helper.js')
+const FiletreeManager = require('../../assets/js/filetree-manager.js')
+const NotificationManager = require('../../assets/js/notification-manager.js')
+const DialogManager = require('../../assets/js/dialog-manager.js')
 
-var fileManager = new FileManager("./config.json")
+
 var notificationManager = new NotificationManager()
-var dialogManager = new DialogManager()
+
 
 let currentWindow = remote.getCurrentWindow()
 
-function checkVariable(variable, type) {
+function getConfigData () {
+    var fileManager = new FileManager("./config.json")
+    return JSON.parse(fileManager.readFile())
+}
+
+function checkVariable (variable, type) {
     if (!variable) {
         throw type
     }
@@ -35,11 +42,13 @@ export default {
     components: {
         FileTree,
         FontAwesomeIcon,
-        CancelButton
+        CancelButton,
+        GreenButton,
+        RedButton
     },
     methods: {
         reloadFileTree: function () {
-            var configData = JSON.parse(fileManager.readFile())
+            var configData = getConfigData()
             try {
                 checkVariable(configData["apiKey"], "apiKey")
                 var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
@@ -57,22 +66,27 @@ export default {
             }
         },
         uploadFile: function () {
-            var configData = JSON.parse(fileManager.readFile())
-            checkVariable(configData["apiKey"], "apiKey")
-            checkVariable(this.localFilePath, "localFilePath")
-            checkVariable(this.selectionData["selectedFile"], "serverFilePath")
-            var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
-            neocitiesHelper.uploadFile(this.selectionData["selectedFile"], this.localFilePath)
-            .then ((data) => {
-                alert(data.message)
-                this.reloadFileTree()
-            })
-            .catch ((err) => {
-                console.log(err)
-            })
+            var configData = getConfigData()
+            try {
+                checkVariable(configData["apiKey"], "apiKey")
+                checkVariable(this.localFilePath, "localFilePath")
+                checkVariable(this.selectionData["selectedFile"], "serverFilePath")
+                var neocitiesHelper = new NeocitiesHelper(configData["apiKey"])
+                neocitiesHelper.uploadFile(this.selectionData["selectedFile"], this.localFilePath)
+                .then ((data) => {
+                    alert(data.message)
+                    this.reloadFileTree()
+                })
+                .catch ((err) => {
+                    console.log(err)
+                })
+            }
+            catch (e) {
+                notificationManager.showNotification(e)
+            }
         },
         deleteFile: function () {
-            var configData = JSON.parse(fileManager.readFile())
+            var configData = getConfigData()
             try {
                 checkVariable(configData["apiKey"], "apiKey")
                 checkVariable(this.selectionData["selectedFile"], "serverFilePath")
@@ -90,10 +104,8 @@ export default {
                 notificationManager.showNotification(e)
             }
         },
-        closeWindow: function () {
-            currentWindow.close()
-        },
         fileSelect: function () {
+            var dialogManager = new DialogManager()
             this.localFilePath = dialogManager.openDialog()
         }
     },

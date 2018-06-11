@@ -2,7 +2,6 @@ module.exports = {
     btns: [
         {
             id: 'uploadBtn',
-            class: 'btn btnUpload',
             tooltip: 'Upload File',
             value: 'upload',
             eventOpts: {

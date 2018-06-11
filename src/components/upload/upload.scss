@@ -1,0 +1,56 @@
+@import '../../assets/scss/colors.scss';
+@import '../../assets/scss/mixin/button.scss';
+
+.infoContainer {
+    height: 80px;
+    width: calc(100% - 320px);
+    background: $gray-light;
+    border-top: 1px solid $gray-dark;
+    float: left;
+}
+
+.buttonContainer {
+    background: $gray-light;
+    border-top: 1px solid $gray-dark;
+    width: 320px;
+    height: 80px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.inputsContainer {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.inputs {
+    height: 50%;
+    width: 100%;
+    color: $gray-darkest;
+}
+
+.serverFileSelect {
+    margin-top: 8px;
+    width: 60%;
+    font-size: 12pt;
+    border: 1px solid $gray-darker;
+    padding: 2px;
+}
+
+.serverFileSelect:focus {
+    outline: 2px solid $gray-darker;
+}
+
+.btnFileSelect {
+    @include button-general(100%, 100%);
+    font-size: 12pt;
+    font-family: inherit;
+    background: none;
+    color: $gray-darkest;
+    text-align: center;
+    float: left;
+    @include button-effect-general($gray-dark, $gray-darker, $gray-darkest, $gray-darkest)
+}

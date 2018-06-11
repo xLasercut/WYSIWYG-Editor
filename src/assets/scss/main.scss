@@ -1,0 +1,57 @@
+@import './mixin/font.scss';
+@import './colors.scss';
+
+@include font('Roboto', '../fonts/Roboto-Regular');
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: Roboto;
+}
+
+.appContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.btnGroup {
+    float: left;
+    height: 100%;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+
+    div:last-child {
+        label {
+            border-right: 1px solid $gray;
+        }
+
+        .dropdown {
+            border-right: 1px solid $gray;
+        }
+    }
+
+    &:last-child {
+        div:last-child {
+            label {
+                border-right: none;
+            }
+
+            .dropdown {
+                border-right: none;
+            }
+        }
+    }
+}
+
+.headerBar {
+    width: calc(100% - 10px);
+    height: 20px;
+    background: $gray-light;
+    border-bottom: 1px solid $gray-dark;
+    float: left;
+    color: $gray-darkest;
+    padding: 5px;
+}

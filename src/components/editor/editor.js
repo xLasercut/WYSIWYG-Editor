@@ -1,19 +1,18 @@
-import EditorButton from './editor-button.vue'
+import EditorButton from '../button/editor-button.vue'
 
 const { ipcRenderer, remote } = require('electron')
 
-const FileManager = require('../assets/js/file-manager.js')
-const DialogManager = require('../assets/js/dialog-manager.js')
-const PromptManager = require('../assets/js/prompt-manager.js')
-const WindowManager = require('../assets/js/window-manager.js')
-const WindowSettings = require('../assets/js/window-settings')
-const HTMLSanitizer = require('../assets/js/html-sanitizer.js')
-const HTMLStringCreator = require('../assets/js/htmlstring-creator.js')
+const FileManager = require('../../assets/js/file-manager.js')
+const DialogManager = require('../../assets/js/dialog-manager.js')
+const PromptManager = require('../../assets/js/prompt-manager.js')
+const WindowManager = require('../../assets/js/window-manager.js')
+const HTMLSanitizer = require('../../assets/js/html-sanitizer.js')
+const HTMLStringCreator = require('../../assets/js/htmlstring-creator.js')
 
-const editorBtns = require('../assets/js/editor-btns.js')
-const dialogSettings = require('../assets/js/dialog-settings.js')
-const promptSettings = require('../assets/js/prompt-settings.js')
-const formatValues = require('../assets/js/format-values.js')
+const editorBtns = require('../../assets/js/editor-btns.js')
+const dialogSettings = require('../../assets/js/dialog-settings.js')
+const promptSettings = require('../../assets/js/prompt-settings.js')
+const formatValues = require('../../assets/js/format-values.js')
 
 var dialogManager = new DialogManager()
 
@@ -25,7 +24,6 @@ const dev = remote.getGlobal("dev")
 
 let currentWindow = remote.getCurrentWindow()
 var windowManager = new WindowManager(currentWindow, dev)
-var windowSettings = new WindowSettings(dev)
 
 function getFrameSource () {
     if (dev) {
@@ -79,15 +77,15 @@ export default {
         },
         getSource: function () {
             this.showSource = !this.showSource
-            this.$refs.displaySource[0].status = this.showSource
+            this.$refs.displaySource[0].checked = this.showSource
             var htmlSanitizer = new HTMLSanitizer()
             this.$refs.source.innerHTML = htmlSanitizer.sanitizeHTML(this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML)
         },
         openSettings: function () {
-            windowManager.newWindow("settings", windowSettings.getUrl("settings"), windowSettings.getOption("settings"))
+            windowManager.newWindow("settings")
         },
         uploadFile: function () {
-            windowManager.newWindow("upload", windowSettings.getUrl("upload"), windowSettings.getOption("upload"))
+            windowManager.newWindow("upload")
         },
         getFrameContent: function () {
             return this.$refs.contents.contentWindow
@@ -98,7 +96,7 @@ export default {
         updateFormatValues: function () {
             for (var key of formatValues.bool) {
                 if (this.$refs[key]) {
-                    this.$refs[key][0].status = this.getFrameContent().document.queryCommandState(key)
+                    this.$refs[key][0].checked = this.getFrameContent().document.queryCommandState(key)
                 }
             }
             for (var key of formatValues.value) {
@@ -115,7 +113,7 @@ export default {
                     else if (key == "fontSize") {
                         item["html"] = commandValue
                     }
-                    this.$refs[key][0].value = item
+                    this.$refs[key][0].drop = item
                 }
             }
         },

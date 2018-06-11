@@ -1,5 +1,4 @@
 const defaultValues = {
-    class: 'btn btnEdit',
     type: 'button'
 }
 

@@ -1,5 +1,6 @@
-const remote = require('electron').remote
-const BrowserWindow = remote.BrowserWindow
+const { remote } = require('electron')
+const { BrowserWindow } = remote
+const WindowSettings = require('./window-settings.js')
 
 let windows = {}
 
@@ -7,15 +8,17 @@ class WindowManager {
     constructor (parent, dev) {
         this.parentWindow = parent
         this.dev = dev
+        this.windowSettings = new WindowSettings(dev)
     }
 
-    newWindow (windowName, url, windowOptions, windowData) {
+    newWindow (windowName, windowData) {
         if (windows[windowName]) {
             console.log("window name already exists")
         }
         else {
+            var windowOptions = this.windowSettings.getOption(windowName)
             windowOptions["parent"] = this.parentWindow
-            
+
             if (this.dev) {
                 windowOptions["resizable"] = true
             }
@@ -28,7 +31,7 @@ class WindowManager {
             else {
                 windows[windowName].setMenu(null)
             }
-            windows[windowName].loadURL(url)
+            windows[windowName].loadURL(this.windowSettings.getUrl(windowName))
 
             windows[windowName].once('ready-to-show', function () {
                 windows[windowName].show()

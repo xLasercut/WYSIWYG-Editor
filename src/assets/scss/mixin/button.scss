@@ -1,0 +1,24 @@
+@import '../colors.scss';
+
+@mixin button-general ($height, $width) {
+    cursor: pointer;
+    height: $height;
+    width: $width;
+    outline: none;
+    border: none;
+    transition: all 0.1s;
+    text-align: center;
+    display: block;
+}
+
+@mixin button-effect-general ($hoverBg, $activeBg, $hoverColor, $activeColor) {
+    &:hover {
+        color: $hoverColor;
+        background: $hoverBg;
+    }
+
+    &:active {
+        color: $activeColor;
+        background: $activeBg
+    }
+}
