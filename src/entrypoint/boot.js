@@ -2,7 +2,7 @@ const electron = require('electron')
 const { app, BrowserWindow } = require('electron')
 const url = require('url')
 const path = require('path')
-const FileManager = require('./src/assets/js/file-manager.js')
+const FileManager = require('../assets/js/file-manager.js')
 
 var configFile = new FileManager('./config.json')
 configFile.ensureFile(JSON.stringify({}))
@@ -26,7 +26,7 @@ function getUrl() {
     }
 
     return url.format({
-        pathname: path.join(__dirname, "dist", "editor.html"),
+        pathname: path.join(__dirname, "editor.html"),
         protocol: "file:",
         slashes: true
     })
