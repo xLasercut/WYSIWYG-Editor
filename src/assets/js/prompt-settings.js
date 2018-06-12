@@ -66,5 +66,16 @@ module.exports = {
                 name: "HTMLCode"
             }
         ]
+    },
+    insertExpImg: {
+        title: "Insert Expandable Image",
+        inputs: [
+            {
+                type: "input",
+                inputType: "text",
+                placeholder: "https://",
+                name: "Url"
+            }
+        ]
     }
 }

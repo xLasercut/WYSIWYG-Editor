@@ -5,7 +5,6 @@ function createHeading () {
             value: `<b>H${i}</b>`,
             tooltip: `Heading ${i}`,
             eventOpts: {
-                name: 'add-format',
                 tag: 'formatBlock',
                 option: `h${i}`
             }

@@ -167,6 +167,10 @@
             width: 200px;
         }
 
+        .othersContent {
+            width: 200px;
+        }
+
     }
 
     #uploadBtn+label {

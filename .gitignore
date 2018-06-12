@@ -2,3 +2,4 @@ config.json
 node_modules
 test.html
 dist
+wysiwyg-editor-win32-x64

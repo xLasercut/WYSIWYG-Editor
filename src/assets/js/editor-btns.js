@@ -41,7 +41,8 @@ const editorBtns = {
         setDefaults(require('./editor-btns/edit/decoration.js')),
         setDefaults(require('./editor-btns/edit/alignment.js')),
         setDefaults(require('./editor-btns/edit/list.js')),
-        setDefaults(require('./editor-btns/edit/special.js'))
+        setDefaults(require('./editor-btns/edit/special.js')),
+        setDefaults(require('./editor-btns/other/other.js'))
     ],
     settingBarGroups: [
         setDefaults(require('./editor-btns/setting/setting.js'))

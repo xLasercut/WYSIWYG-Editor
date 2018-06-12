@@ -1,3 +1,5 @@
+const uuidv1 = require('uuid/v1')
+
 function createImageHTML (url, height, width) {
     var htmlString = `<img src="${url}"`
     if (height) {
@@ -40,6 +42,18 @@ function createYoutubeHTML (url, height, width) {
     return htmlString
 }
 
+function createExpImgHTML (url) {
+    var imgId = uuidv1()
+    var htmlString = `
+        <div class="expImg">
+            <input id="${imgId}" type="checkbox" />
+            <label for="${imgId}">
+                <img src="${url}"/>
+            </label>
+    `
+    return htmlString
+}
+
 function sanitizeUrl (url) {
     if (url.indexOf("https://") == -1 || url.indexOf("http://") != -1) {
         return `https://${url}`
@@ -54,17 +68,22 @@ class HTMLStringCreator {
     }
 
     getHTMLString () {
-        if (this.htmlData.title == 'Insert Image') {
-            return createImageHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
-        }
-        else if (this.htmlData.title == 'Insert Link') {
-            return createLinkHTML(this.htmlData.Url, this.htmlData.Text)
-        }
-        else if (this.htmlData.title == 'Insert Youtube Video') {
-            return createYoutubeHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
-        }
-        else if (this.htmlData.title == 'Insert HTML') {
-            return this.htmlData.HTMLCode
+        switch (this.htmlData.title) {
+            case 'Insert Image':
+                return createImageHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
+                break
+            case 'Insert Link':
+                return createLinkHTML(this.htmlData.Url, this.htmlData.Text)
+                break
+            case 'Insert Youtube Video':
+                return createYoutubeHTML(this.htmlData.Url, this.htmlData.Height, this.htmlData.Width)
+                break
+            case 'Insert HTML':
+                return this.htmlData.HTMLCode
+                break
+            case 'Insert Expandable Image':
+                return createExpImgHTML(this.htmlData.Url)
+                break
         }
     }
 }

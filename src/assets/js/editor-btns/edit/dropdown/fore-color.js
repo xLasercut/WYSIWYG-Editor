@@ -3,7 +3,6 @@ function createOutputItem (color) {
         style: `background: ${color};`,
         tooltip: '',
         eventOpts: {
-            namd: 'add-format',
             tag: 'foreColor',
             option: color
         }

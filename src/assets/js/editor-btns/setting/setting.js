@@ -15,7 +15,8 @@ module.exports = {
             value: 'cog',
             tooltip: 'App Settings',
             eventOpts: {
-                name: 'open-settings'
+                name: 'new-window',
+                option: 'settings'
             }
         }
     ]

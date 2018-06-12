@@ -1,8 +1,9 @@
 const {dialog} = require('electron').remote
+const dialogSettings = require('./dialog-settings.js')
 
 class DialogManager {
-    openDialog (dialogOptions = {}) {
-        var filePaths = dialog.showOpenDialog(dialogOptions)
+    openDialog (option = 'default') {
+        var filePaths = dialog.showOpenDialog(dialogSettings[option])
         if (!filePaths) {
             return null
         }
@@ -14,8 +15,8 @@ class DialogManager {
         return filePaths
     }
 
-    saveDialog (dialogOptions = {}) {
-        var filePath = dialog.showSaveDialog(dialogOptions)
+    saveDialog (option = 'default') {
+        var filePath = dialog.showSaveDialog(dialogSettings[option])
         if (!filePath) {
             return null
         }

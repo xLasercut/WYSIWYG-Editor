@@ -1,4 +1,5 @@
 const WindowManager = require('./window-manager.js')
+const promptSettings = require('./prompt-settings.js')
 
 function parseOptions (inputOptions) {
     var inputs = []
@@ -22,9 +23,9 @@ class PromptManager {
         this.dev = dev
     }
 
-    newPrompt (inputs) {
+    newPrompt (option) {
         var windowManager = new WindowManager(this.parentWindow, this.dev)
-        var parsedOptions = parseOptions(inputs)
+        var parsedOptions = parseOptions(promptSettings[option])
         var windowData = {
             eventName: "inputs",
             eventData: parsedOptions

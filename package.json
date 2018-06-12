@@ -4,14 +4,15 @@
   "description": "a WYSIWYG html page editor",
   "main": "./dist/bundle-boot.js",
   "scripts": {
-    "start": "npm run build; electron .",
-    "dev": "npm run build-boot; electron . -dev",
-    "build": "webpack --config ./webpack-configs/editor.webpack.config.js; webpack --config ./webpack-configs/prompt.webpack.config.js; webpack --config ./webpack-configs/settings.webpack.config.js; webpack --config ./webpack-configs/upload.webpack.config.js",
+    "start": "npm run build && electron .",
+    "dev": "npm run build-boot && concurrently -k \"npm run dev-editor\" \"npm run dev-prompt\" \"npm run dev-settings\" \"npm run dev-upload\" \"electron . -dev\"",
+    "build": "npm run build-boot && webpack --config ./webpack-configs/editor.webpack.config.js && webpack --config ./webpack-configs/prompt.webpack.config.js && webpack --config ./webpack-configs/settings.webpack.config.js && webpack --config ./webpack-configs/upload.webpack.config.js",
     "build-boot": "webpack --config ./webpack-configs/boot.webpack.config.js",
     "dev-editor": "webpack-dev-server --config ./webpack-configs/editor.webpack.config.js --port 8080",
     "dev-prompt": "webpack-dev-server --config ./webpack-configs/prompt.webpack.config.js --port 8081",
     "dev-settings": "webpack-dev-server --config ./webpack-configs/settings.webpack.config.js --port 8082",
-    "dev-upload": "webpack-dev-server --config ./webpack-configs/upload.webpack.config.js --port 8083"
+    "dev-upload": "webpack-dev-server --config ./webpack-configs/upload.webpack.config.js --port 8083",
+    "pack": "electron-packager . --ignore=.gitignore --ignore=src --ignore=webpack-configs --ignore=page.ejs --ignore=config.json --ignore=README.md"
   },
   "repository": {
     "type": "git",
@@ -20,22 +21,25 @@
   "author": "xLasercut",
   "license": "MIT",
   "dependencies": {
+    "q": "^1.5.1",
+    "request": "^2.87.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/vue-fontawesome": "0.0.23",
-    "electron": "^2.0.1",
-    "q": "^1.5.1",
-    "request": "^2.87.0",
-    "vue": "^2.5.16"
-  },
-  "devDependencies": {
+    "concurrently": "^3.5.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3",
+    "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",

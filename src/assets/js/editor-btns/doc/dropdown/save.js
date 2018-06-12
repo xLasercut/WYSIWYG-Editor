@@ -3,14 +3,16 @@ module.exports = [
         value: '<b>Save</b>',
         tooltip: 'Save',
         eventOpts: {
-            name: 'save-file'
+            name: 'save-file',
+            option: false
         }
     },
     {
         value: '<b>Save As</>',
         tooltip: 'Save As',
         eventOpts: {
-            name: 'saveas-file'
+            name: 'save-file',
+            option: true
         }
     }
 ]

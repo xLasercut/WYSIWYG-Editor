@@ -11,7 +11,6 @@ function createFamily () {
             value: family,
             tooltip: family,
             eventOpts: {
-                name: 'add-format',
                 tag: 'fontName',
                 option: family
             }

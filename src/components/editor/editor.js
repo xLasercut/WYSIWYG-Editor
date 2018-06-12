@@ -10,8 +10,6 @@ const HTMLSanitizer = require('../../assets/js/html-sanitizer.js')
 const HTMLStringCreator = require('../../assets/js/htmlstring-creator.js')
 
 const editorBtns = require('../../assets/js/editor-btns.js')
-const dialogSettings = require('../../assets/js/dialog-settings.js')
-const promptSettings = require('../../assets/js/prompt-settings.js')
 const formatValues = require('../../assets/js/format-values.js')
 
 var dialogManager = new DialogManager()
@@ -48,7 +46,7 @@ export default {
         addFormat: function (tag, option) {
             if (specials.indexOf(tag) > -1) {
                 var promptManager = new PromptManager(currentWindow, dev)
-                promptManager.newPrompt(promptSettings[option])
+                promptManager.newPrompt(option)
             }
             else {
                 this.getFrameContent().document.execCommand(tag, false, option)
@@ -59,7 +57,7 @@ export default {
             this.currentFilePath = null
         },
         openDocument: function () {
-            this.currentFilePath = dialogManager.openDialog(dialogSettings.webPage)
+            this.currentFilePath = dialogManager.openDialog("webPage")
             if (this.currentFilePath) {
                 var htmlDoc = new FileManager(this.currentFilePath)
                 this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML = htmlDoc.readFile()
@@ -67,7 +65,7 @@ export default {
         },
         saveDocument: function (saveAs) {
             if (!this.currentFilePath || saveAs) {
-                this.currentFilePath = dialogManager.saveDialog(dialogSettings.webPage)
+                this.currentFilePath = dialogManager.saveDialog("webPage")
             }
 
             if (this.currentFilePath) {
@@ -81,11 +79,8 @@ export default {
             var htmlSanitizer = new HTMLSanitizer()
             this.$refs.source.innerHTML = htmlSanitizer.sanitizeHTML(this.getFrameContent().document.getElementsByTagName("div")[0].innerHTML)
         },
-        openSettings: function () {
-            windowManager.newWindow("settings")
-        },
-        uploadFile: function () {
-            windowManager.newWindow("upload")
+        newWindow: function (windowName) {
+            windowManager.newWindow(windowName)
         },
         getFrameContent: function () {
             return this.$refs.contents.contentWindow
@@ -119,8 +114,8 @@ export default {
         },
         buttonEventControl: function (event) {
             switch (event.name) {
-                case "upload-file":
-                    this.uploadFile()
+                case "new-window":
+                    this.newWindow(event.option)
                     break
                 case "new-file":
                     this.newDocument()
@@ -129,13 +124,7 @@ export default {
                     this.openDocument()
                     break
                 case "save-file":
-                    this.saveDocument(false)
-                    break
-                case "saveas-file":
-                    this.saveDocument(true)
-                    break
-                case "open-settings":
-                    this.openSettings()
+                    this.saveDocument(event.option)
                     break
                 case "display-html":
                     this.getSource()

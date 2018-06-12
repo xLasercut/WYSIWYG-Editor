@@ -5,7 +5,6 @@ function createSize () {
             value: `<b>${i}</b>`,
             tooltip: `Size ${i}`,
             eventOpts: {
-                name: 'add-format',
                 tag: 'fontSize',
                 option: i
             }

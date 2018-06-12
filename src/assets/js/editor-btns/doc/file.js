@@ -5,7 +5,8 @@ module.exports = {
             tooltip: 'Upload File',
             value: 'upload',
             eventOpts: {
-                name: 'upload-file'
+                name: 'new-window',
+                option: 'upload'
             }
         },
         {
@@ -22,8 +23,6 @@ module.exports = {
             value: 'hdd',
             type: 'dropdown',
             drop: {
-                containerClass: 'dropdownContent',
-                btnClass: 'btn btnDrop',
                 contents: require('./dropdown/save.js')
             }
         },
