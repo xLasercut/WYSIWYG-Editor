@@ -55,14 +55,14 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'settings.html',
-            template: 'page.ejs',
+            template: './src/template/page.ejs',
             inject: true,
             title: "Settings"
         })
     ],
     output: {
         filename: 'bundle-settings.js',
-        path: path.join(__dirname, '..', 'dist')
+        path: path.join(__dirname, '..', '..', 'dist')
     },
     target: 'electron-renderer',
     node: {

@@ -6,13 +6,13 @@
   "scripts": {
     "start": "npm run build && electron .",
     "dev": "npm run build-boot && concurrently -k \"npm run dev-editor\" \"npm run dev-prompt\" \"npm run dev-settings\" \"npm run dev-upload\" \"electron . -dev\"",
-    "build": "npm run build-boot && webpack --config ./webpack-configs/editor.webpack.config.js && webpack --config ./webpack-configs/prompt.webpack.config.js && webpack --config ./webpack-configs/settings.webpack.config.js && webpack --config ./webpack-configs/upload.webpack.config.js",
-    "build-boot": "webpack --config ./webpack-configs/boot.webpack.config.js",
-    "dev-editor": "webpack-dev-server --config ./webpack-configs/editor.webpack.config.js --port 8080",
-    "dev-prompt": "webpack-dev-server --config ./webpack-configs/prompt.webpack.config.js --port 8081",
-    "dev-settings": "webpack-dev-server --config ./webpack-configs/settings.webpack.config.js --port 8082",
-    "dev-upload": "webpack-dev-server --config ./webpack-configs/upload.webpack.config.js --port 8083",
-    "pack": "electron-packager . --ignore=.gitignore --ignore=src --ignore=webpack-configs --ignore=page.ejs --ignore=config.json --ignore=README.md"
+    "build": "npm run build-boot && webpack --config ./src/webpack-configs/editor.webpack.config.js && webpack --config ./src/webpack-configs/prompt.webpack.config.js && webpack --config ./src/webpack-configs/settings.webpack.config.js && webpack --config ./src/webpack-configs/upload.webpack.config.js",
+    "build-boot": "webpack --config ./src/webpack-configs/boot.webpack.config.js",
+    "dev-editor": "webpack-dev-server --config ./src/webpack-configs/editor.webpack.config.js --port 8080",
+    "dev-prompt": "webpack-dev-server --config ./src/webpack-configs/prompt.webpack.config.js --port 8081",
+    "dev-settings": "webpack-dev-server --config ./src/webpack-configs/settings.webpack.config.js --port 8082",
+    "dev-upload": "webpack-dev-server --config ./src/webpack-configs/upload.webpack.config.js --port 8083",
+    "pack": "electron-packager . --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md"
   },
   "repository": {
     "type": "git",

@@ -55,14 +55,14 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'prompt.html',
-            template: 'page.ejs',
+            template: './src/template/page.ejs',
             inject: true,
             title: "Options"
         })
     ],
     output: {
         filename: 'bundle-prompt.js',
-        path: path.join(__dirname, '..', 'dist')
+        path: path.join(__dirname, '..', '..', 'dist')
     },
     target: 'electron-renderer',
     node: {

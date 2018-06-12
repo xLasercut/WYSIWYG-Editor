@@ -56,14 +56,14 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'upload.html',
-            template: 'page.ejs',
+            template: './src/template/page.ejs',
             inject: true,
             title: "Upload File"
         })
     ],
     output: {
         filename: 'bundle-upload.js',
-        path: path.join(__dirname, '..', 'dist')
+        path: path.join(__dirname, '..', '..', 'dist')
     },
     target: 'electron-renderer',
     node: {

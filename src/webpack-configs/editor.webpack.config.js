@@ -56,21 +56,21 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'editor.html',
-            template: 'page.ejs',
+            template: './src/template/page.ejs',
             inject: true,
             title: "WYSIWYG Editor"
         }),
         new CopyWebpackPlugin([
             {
-                from: path.join(__dirname, '..', 'src', 'assets', 'static'),
-                to: path.join(__dirname, '..', 'dist'),
+                from: path.join(__dirname, '..', 'assets', 'static'),
+                to: path.join(__dirname, '..', '..', 'dist'),
                 toType: 'dir'
             }
         ])
     ],
     output: {
         filename: 'bundle-editor.js',
-        path: path.join(__dirname, '..', 'dist')
+        path: path.join(__dirname, '..', '..', 'dist')
     },
     target: 'electron-renderer',
     node: {

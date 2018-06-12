@@ -19,7 +19,7 @@ module.exports = {
     ],
     output: {
         filename: 'bundle-boot.js',
-        path: path.join(__dirname, '..', 'dist')
+        path: path.join(__dirname, '..', '..', 'dist')
     },
     target: 'electron-main',
     node: {
