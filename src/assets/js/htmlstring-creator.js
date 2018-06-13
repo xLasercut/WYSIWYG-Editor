@@ -41,17 +41,25 @@ function createYoutubeHTML (url, height, width) {
 }
 
 function createExpImgHTML (url, startWidth, maxWidth) {
+    if (!startWidth) {
+        startWidth = 0
+    }
+
+    if (!maxWidth) {
+        maxWidth = 0
+    }
+    
     var htmlString = `
         <img
             src="${url}"
-            style="cursor: pointer; transition: all 0.3s;"
-            width="${startWidth}"
+            style="cursor: pointer; transition: all 0.3s; min-width: 0px;"
             onclick="
-                if (this.width != ${maxWidth}) {
-                    this.width = ${maxWidth}
+                var style = this.style
+                if (style.minWidth != '${maxWidth}px') {
+                    style.minWidth = '${maxWidth}px'
                 }
                 else {
-                    this.width = ${startWidth}
+                    style.minWidth = '${startWidth}px'
                 }
             "
         />
