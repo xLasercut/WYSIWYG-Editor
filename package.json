@@ -12,7 +12,7 @@
     "dev-prompt": "webpack-dev-server --config ./src/webpack-configs/prompt.webpack.config.js --port 8081",
     "dev-settings": "webpack-dev-server --config ./src/webpack-configs/settings.webpack.config.js --port 8082",
     "dev-upload": "webpack-dev-server --config ./src/webpack-configs/upload.webpack.config.js --port 8083",
-    "pack": "electron-packager . --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md"
+    "pack": "npm run build && electron-packager . --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md"
   },
   "repository": {
     "type": "git",
