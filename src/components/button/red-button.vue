@@ -2,7 +2,6 @@
     <button v-on:click="$emit('click')"><font-awesome-icon v-bind:icon="icon" v-if="icon"/> {{ text }}</button>
 </template>
 
-
 <script>
     import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 

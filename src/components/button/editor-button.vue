@@ -178,6 +178,4 @@
         background: $gray;
         @include button-effect-general($main-blue, $main-blue-dark, white, white);
     }
-
-
 </style>

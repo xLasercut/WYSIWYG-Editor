@@ -13,7 +13,6 @@
     </div>
 </template>
 
-
 <script src="./settings.js"></script>
 <style src="../../assets/scss/main.scss" lang="scss"></style>
 <style src="../prompt/prompt.scss" lang="scss" scoped></style>
