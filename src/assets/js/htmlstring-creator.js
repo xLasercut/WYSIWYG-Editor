@@ -1,5 +1,3 @@
-const uuidv1 = require('uuid/v1')
-
 function createImageHTML (url, height, width) {
     var htmlString = `<img src="${url}"`
     if (height) {
@@ -42,14 +40,21 @@ function createYoutubeHTML (url, height, width) {
     return htmlString
 }
 
-function createExpImgHTML (url) {
-    var imgId = uuidv1()
+function createExpImgHTML (url, startWidth, maxWidth) {
     var htmlString = `
-        <div class="expImg">
-            <input id="${imgId}" type="checkbox" />
-            <label for="${imgId}">
-                <img src="${url}"/>
-            </label>
+        <img
+            src="${url}"
+            style="cursor: pointer; transition: all 0.3s;"
+            width="${startWidth}"
+            onclick="
+                if (this.width != ${maxWidth}) {
+                    this.width = ${maxWidth}
+                }
+                else {
+                    this.width = ${startWidth}
+                }
+            "
+        />
     `
     return htmlString
 }
@@ -82,7 +87,7 @@ class HTMLStringCreator {
                 return this.htmlData.HTMLCode
                 break
             case 'Insert Expandable Image':
-                return createExpImgHTML(this.htmlData.Url)
+                return createExpImgHTML(this.htmlData.Url, this.htmlData.Start_Width, this.htmlData.End_Width)
                 break
         }
     }

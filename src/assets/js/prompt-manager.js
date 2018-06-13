@@ -6,8 +6,9 @@ function parseOptions (inputOptions) {
     var refs = []
     for (var option of inputOptions.inputs) {
         if (option.name) {
+            option["ref"] = option.name.split(" ").join("_")
             inputs.push(option)
-            refs.push(option.name)
+            refs.push(option.ref)
         }
     }
     return {

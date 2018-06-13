@@ -75,6 +75,16 @@ module.exports = {
                 inputType: "text",
                 placeholder: "https://",
                 name: "Url"
+            },
+            {
+                type: "input",
+                inputType: "number",
+                name: "Start Width"
+            },
+            {
+                type: "input",
+                inputType: "number",
+                name: "End Width"
             }
         ]
     }

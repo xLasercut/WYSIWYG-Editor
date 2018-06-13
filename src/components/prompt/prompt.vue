@@ -12,21 +12,21 @@
                 <input
                     class="promptInput"
                     v-bind:type="input.inputType"
-                    v-bind:ref="input.name"
+                    v-bind:ref="input.ref"
                     v-bind:placeholder="input.placeholder"
                     v-if="input.type == 'input'"
                 />
 
                 <textarea
                     class="promptTa"
-                    v-bind:ref="input.name"
+                    v-bind:ref="input.ref"
                     v-bind:placeholder="input.placeholder"
                     v-if="input.type == 'textarea'"
                 ></textarea>
 
                 <select
                     class="promptSelect"
-                    v-bind:ref="input.name"
+                    v-bind:ref="input.ref"
                     v-if="input.type == 'select'"
                 >
                     <option v-for="option in input.options">{{ option }}</option>
