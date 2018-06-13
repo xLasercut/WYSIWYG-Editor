@@ -12,7 +12,11 @@
     "dev-prompt": "webpack-dev-server --config ./src/webpack-configs/prompt.webpack.config.js --port 8081",
     "dev-settings": "webpack-dev-server --config ./src/webpack-configs/settings.webpack.config.js --port 8082",
     "dev-upload": "webpack-dev-server --config ./src/webpack-configs/upload.webpack.config.js --port 8083",
-    "pack": "npm run build && electron-packager . --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md"
+    "pack": "npm run build && electron-packager . --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md",
+    "pack-win64": "npm run build && electron-packager . --platform=win32 --arch=x64 --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md",
+    "pack-win32": "npm run build && electron-packager . --platform=win32 --arch=ia32 --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md",
+    "pack-linux64": "npm run build && electron-packager . --platform=linux --arch=ia32 --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md",
+    "pack-linux32": "npm run build && electron-packager . --platform=linux --arch=ia32 --ignore=.gitignore --ignore=src --ignore=config.json --ignore=README.md"
   },
   "repository": {
     "type": "git",
