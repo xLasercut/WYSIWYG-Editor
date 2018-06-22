@@ -1,11 +1,10 @@
 import Vue from 'vue'
-import fontawesome from '@fortawesome/fontawesome'
-import solids from '@fortawesome/fontawesome-free-solid'
-import brands from '@fortawesome/fontawesome-free-brands'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
 import App from '../components/upload/upload.vue'
 
-fontawesome.library.add(brands, solids)
+library.add(fas)
 
 new Vue({
     el: '#app',

@@ -2,7 +2,7 @@ import FileTree from './file-tree.vue'
 import CancelButton from '../button/cancel-button.vue'
 import GreenButton from '../button/green-button.vue'
 import RedButton from '../button/red-button.vue'
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const { remote } = require('electron')
 
